@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalhes do Pedido</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            font-family: Arial, sans-serif;
+        }
+        .pedido-container {
+            max-width: 600px;
+            margin: 30px auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+        .pedido-detalhes {
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+        .pedido-detalhes:last-child {
+            border-bottom: none;
+        }
+        .pedido-label {
+            font-weight: bold;
+            color: #007bff;
+        }
+    </style>
+</head>
+<body>
+    <div class="pedido-container">
+        <h3>Detalhes do Pedido #{{ pedido[0] }}</h3>
+        <div class="pedido-detalhes"><span class="pedido-label">Cliente:</span> {{ pedido[1] }}</div>
+        <div class="pedido-detalhes"><span class="pedido-label">Feijão:</span> {{ pedido[2] }}</div>
+        <div class="pedido-detalhes"><span class="pedido-label">Arroz:</span> {{ pedido[3] }}</div>
+        <div class="pedido-detalhes"><span class="pedido-label">Macarrão:</span> {{ pedido[4] }}</div>
+        <div class="pedido-detalhes"><span class="pedido-label">Verduras:</span> {{ pedido[5] }}</div>
+        <div class="pedido-detalhes"><span class="pedido-label">Frango:</span> {{ pedido[6] }}</div>
+        <div class="pedido-detalhes"><span class="pedido-label">Carne:</span> {{ pedido[7] }}</div>
+        <div class="pedido-detalhes"><span class="pedido-label">Linguiça:</span> {{ pedido[8] }}</div>
+        <div class="pedido-detalhes"><span class="pedido-label">Observações:</span> {{ pedido[9] }}</div>
+        <div class="pedido-detalhes"><span class="pedido-label">Preço:</span> R$ {{ pedido[10] }}</div>
+        
+    </div>
+    <div class="container-quentinha">
+        <div class="div-quentinha">
+            <img src="/static/marmita_vazia.png" alt="quentinha_vazia">
+            {% if pedido[2] == "feijaoPreto" %}
+                <img src="/static/feijao_preto.png" alt="Feijao_Preto" class="feijao">
+            {% endif %}
+            {% if pedido[2] == "feijaoMacassar" %}
+                <img src="/static/feijão_macassar.png" alt="Feijao_Macassar" class="feijao">
+            {% endif %}
+            {% if pedido[2] == "feijaoCarioca" %}
+                <img src="/static/feijao_carioca.png" alt="Feijao_Carioca" class="feijao">
+            {% endif %}
+            {% if pedido[3] == "arrozSolto" %}
+                <img src="/static/Arroz_Solto.png" alt="Arroz_Solto" class="arroz">
+            {% endif %}
+            {% if pedido[3] == "arrozLeite" %}
+                <img src="/static/arroz_Leite.png" alt="Arroz_Leite" class="arroz_Leite">
+            {% endif %}
+            {% if pedido[4] == "sim" %}
+                <img src="/static/macarrao.png" alt="macarrao" class="macarrao">
+            {% endif %}
+            {% if pedido[5] == "sim" %}
+                <img src="/static/verduras.png" alt="Verduras" class="verduras">
+            {% endif %}
+            {% if pedido[6] == "sim" %}
+                <img src="/static/frango.png" alt="Frango" class="frango">
+            {% endif %}
+            {% if pedido[7] == "sim" %}
+                <img src="/static/carne.png" alt="Carne" class="carne">
+            {% endif %}
+            {% if pedido[8] == "sim" %}
+                <img src="/static/linguica.png" alt="Linguica" class="linguica">
+            {% endif %}
+        </div>
+    </div>
+</body>
+</html>

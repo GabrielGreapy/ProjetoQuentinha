@@ -1,0 +1,74 @@
+.container-quentinha {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.div-quentinha {
+    position: relative;
+    width: 400px; /* Mantém o tamanho original da quentinha */
+    height: auto;
+}
+
+/* Define o tamanho da quentinha corretamente */
+.div-quentinha img:first-child {
+    width: 100%; /* Apenas a quentinha mantém o tamanho normal */
+    position: relative;
+    z-index: 1; /* Garante que a quentinha fique no fundo */
+}
+
+/* Ajuste do tamanho e posição do feijão e arroz */
+.feijao, .arroz, .macarrao, .verduras, .frango, .carne, .linguica  {
+     /* Ingredientes menores dentro da quentinha */
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    
+}
+
+/* Posição corrigida dos ingredientes */
+.feijao {
+    width: 85%;
+    top: 10%; /* Feijão bem posicionado */
+    z-index: 2; 
+}
+
+.arroz {
+    width: 75%;
+    top: 20%; 
+    z-index: 3;
+}
+.arroz_Leite {
+    position: absolute;
+    left: 57%;
+    transform: translateX(-50%);
+    width: 70%;
+    top: 15%;
+    z-index: 3;
+}
+.macarrao {
+    width: 75%;
+    top: 15%; 
+    z-index: 4;
+}
+.verduras{
+    width: 55%;
+    top: 0%; 
+    z-index: 5;
+}
+.frango{
+    width: 120%;
+    top: 0%; 
+    z-index: 6;
+}
+
+.carne{
+    width: 55%;
+    top: 20%; 
+    z-index: 7;
+}
+.linguica{
+    width: 75%;
+    top: 10%; 
+    z-index: 8;
+}

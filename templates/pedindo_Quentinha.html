@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pedindo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+</head>
+<body>
+    <div class="container-xxl">
+        <h2>Projeto Quentinhas</h2>
+    </div>
+    <div class="container-md">
+        <h5>Pode pedir</h5>
+    </div>
+    <div class="container-fluid">
+        
+        <form action="/pedindo" method="post">
+            <label for="nome_Cliente">Nome do Cliente:</label>
+            <input type="text" name="nome_Cliente" id="nome_Cliente">
+            
+            <h4>Tipo de Feijão:</h4>
+            <input type="radio" name="tipo_Feijao" value="feijaoCarioca"> Feijão Carioca
+            <input type="radio" name="tipo_Feijao" value="feijaoMacassar"> Feijão Macassar
+            <input type="radio" name="tipo_Feijao" value="feijaoPreto"> Feijão Preto
+            <input type="radio" name="tipo_Feijao" value="semFeijao"> Sem Feijão
+        
+            <h4>Tipo de Arroz:</h4>
+            <input type="radio" name="tipo_Arroz" value="arrozSolto"> Arroz Solto
+            <input type="radio" name="tipo_Arroz" value="arrozLeite"> Arroz de Leite
+            <input type="radio" name="tipo_Arroz" value="semArroz"> Sem Arroz
+        
+            <h4>Opcionais:</h4>
+            <input type="checkbox" name="opcionais" value="macarrao"> Macarrão
+            <input type="checkbox" name="opcionais" value="verduras"> Verduras
+        
+            <h4>Escolha sua carne:</h4>
+            <input type="checkbox" name="carnes" value="frango"> Frango
+            <input type="checkbox" name="carnes" value="carne"> Carne
+            <input type="checkbox" name="carnes" value="linguica"> Linguiça
+        
+            <label for="obs">Observações:</label>
+            <input type="text" name="obs" id="obs">
+        
+            <input type="submit" value="Enviar Pedido">
+        </form>
+    </div>
+    <p>{{ mensagem }}</p>
+</body>
+</html>
