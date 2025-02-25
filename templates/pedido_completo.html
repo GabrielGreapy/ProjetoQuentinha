@@ -1,37 +1,10 @@
-<!DOCTYPE html>
-<html lang="pt">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Detalhes do Pedido</title>
-    <link rel="stylesheet" href="/static/css/style.css">
-    <style>
-        body {
-            background-color: #f8f9fa;
-            font-family: Arial, sans-serif;
-        }
-        .pedido-container {
-            max-width: 600px;
-            margin: 30px auto;
-            background: white;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-        }
-        .pedido-detalhes {
-            padding: 10px;
-            border-bottom: 1px solid #ddd;
-        }
-        .pedido-detalhes:last-child {
-            border-bottom: none;
-        }
-        .pedido-label {
-            font-weight: bold;
-            color: #007bff;
-        }
-    </style>
-</head>
-<body>
+{% extends "home.html" %}
+
+{% block title %}Projeto Quentinhas{% endblock %}
+
+{% block subtitle %}Seja Bem-Vindo/{% endblock %}
+
+{% block content %}
     <div class="pedido-container">
         <h3>Detalhes do Pedido #{{ pedido[0] }}</h3>
         <div class="pedido-detalhes"><span class="pedido-label">Cliente:</span> {{ pedido[1] }}</div>
@@ -83,3 +56,4 @@
     </div>
 </body>
 </html>
+{% endblock %}

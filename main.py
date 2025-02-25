@@ -76,24 +76,5 @@ def pedido_completo(pedido_id):
         mensagem='Pedido não encontrado'
         return render_template("lista_pedido.html", mensagem=mensagem)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 if __name__ == "__main__":
     app.run(debug=True)

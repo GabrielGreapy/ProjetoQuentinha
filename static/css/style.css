@@ -1,74 +1,142 @@
-.container-quentinha {
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f8f9fa;
+    padding: 20px;
+    margin: 0;
     display: flex;
     justify-content: center;
-    margin-top: 20px;
+    align-items: center;
+    min-height: 100vh;
 }
 
-.div-quentinha {
-    position: relative;
-    width: 400px; /* Mantém o tamanho original da quentinha */
-    height: auto;
+
+.container-xxl {
+    background-color: #007bff;
+    color: white;
+    padding: 20px;
+    text-align: center;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    font-size: 24px;
+    font-weight: bold;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-/* Define o tamanho da quentinha corretamente */
-.div-quentinha img:first-child {
-    width: 100%; /* Apenas a quentinha mantém o tamanho normal */
-    position: relative;
-    z-index: 1; /* Garante que a quentinha fique no fundo */
+.container-md {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 18px;
+    font-weight: bold;
 }
 
-/* Ajuste do tamanho e posição do feijão e arroz */
-.feijao, .arroz, .macarrao, .verduras, .frango, .carne, .linguica  {
-     /* Ingredientes menores dentro da quentinha */
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    
+.container-fluid {
+    background-color: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+    margin: auto;
 }
 
-/* Posição corrigida dos ingredientes */
-.feijao {
-    width: 85%;
-    top: 10%; /* Feijão bem posicionado */
-    z-index: 2; 
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
 }
 
-.arroz {
-    width: 75%;
-    top: 20%; 
-    z-index: 3;
-}
-.arroz_Leite {
-    position: absolute;
-    left: 57%;
-    transform: translateX(-50%);
-    width: 70%;
-    top: 15%;
-    z-index: 3;
-}
-.macarrao {
-    width: 75%;
-    top: 15%; 
-    z-index: 4;
-}
-.verduras{
-    width: 55%;
-    top: 0%; 
-    z-index: 5;
-}
-.frango{
-    width: 120%;
-    top: 0%; 
-    z-index: 6;
+
+label {
+    font-weight: bold;
+    margin-top: 10px;
+    display: block;
 }
 
-.carne{
-    width: 55%;
-    top: 20%; 
-    z-index: 7;
+
+input[type="text"] {
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 100%;
+    font-size: 16px;
 }
-.linguica{
-    width: 75%;
-    top: 10%; 
-    z-index: 8;
+
+
+input[type="submit"] {
+    background-color: #28a745;
+    color: white;
+    padding: 12px;
+    border: none;
+    border-radius: 5px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+input[type="submit"]:hover {
+    background-color: #218838;
+}
+
+
+.opcoes {
+    display: flex;
+    flex-direction: column;
+    gap: 15px; 
+}
+
+.opcoes label {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+
+input[type="radio"],
+input[type="checkbox"] {
+    transform: scale(1.2);
+    margin-top: 5px;
+}
+
+
+.btn-pedir {
+    display: inline-block;
+    padding: 12px 20px;
+    background-color: #007bff;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 18px;
+    text-align: center;
+    transition: background 0.3s;
+    margin: 10px 0;
+}
+
+.btn-pedir:hover {
+    background-color: #0056b3;
+}
+
+
+p {
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+    color: #dc3545;
+}
+
+
+.content {
+    text-align: center;
+}
+
+.welcome-text {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
 }
