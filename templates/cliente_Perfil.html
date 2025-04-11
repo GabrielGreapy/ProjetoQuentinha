@@ -1,0 +1,27 @@
+{% extends "home.html" %}
+
+{% block title %}Projeto Quentinhas{% endblock %}
+
+{% block subtitle %}{% endblock %}
+
+{% block content %}
+
+    
+    <div class="container">
+        <div class="containerCliente">
+            <div class="perfilCliente">
+                <h1>Bem vindo(a) {{ nome }}</h1>
+                <h3>Seu telefone: {{ numero }}</h3>
+                
+            </div>
+            <div class="funcoes">
+                <a href="/pedindo">
+                    <button class="b100">Pedir Quentinhas</button>
+                </a>
+            </div>
+        </div>
+        
+    </div>
+
+
+{% endblock %}

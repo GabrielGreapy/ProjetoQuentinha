@@ -1,0 +1,28 @@
+{% extends "home.html" %}
+
+{% block title %}Projeto Quentinhas{% endblock %}
+
+{% block subtitle %}{% endblock %}
+
+{% block content %}
+
+
+    <div class="container">
+        <div class="form-div">
+            <form action="" method="POST">
+                <label for="email">Seu E-mail</label>
+                <input type="email" name="email">
+                <label for="nome">Seu nome</label>
+                <input type="text" name="nome">
+                <label for="numero">Coloque um numero para contato.</label>
+                <input type="text" name="numero">
+                <label for="senha">Sua senha</label>
+                <input type="password" name="senha">
+                <input type="submit" value="Criar">
+            </form>
+        </div>
+
+    </div>
+
+
+{% endblock %}

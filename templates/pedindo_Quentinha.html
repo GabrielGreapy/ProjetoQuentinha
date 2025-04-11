@@ -5,36 +5,51 @@
 {% block subtitle %}Seja Bem-Vindo/{% endblock %}
 
 {% block content %}
-    <form action="/pedindo" method="post">
-        <label for="nome_Cliente">Nome do Cliente:</label>
-        <input type="text" name="nome_Cliente" id="nome_Cliente">
-        
-        <h4>Tipo de Feijão:</h4>
-
-        <div class="escolha"><input type="radio" name="tipo_Feijao" value="feijaoCarioca"> Feijão Carioca</div>
-        <div class="escolha"><input type="radio" name="tipo_Feijao" value="feijaoMacassar"> Feijão Macassar</div>
-        <div class="escolha"><input type="radio" name="tipo_Feijao" value="feijaoPreto"> Feijão Preto</div>
-        <div class="escolha"><input type="radio" name="tipo_Feijao" value="semFeijao"> Sem Feijão</div>
-    
-        <h4>Tipo de Arroz:</h4>
-        <div class="escolha"><input type="radio" name="tipo_Arroz" value="arrozSolto"> Arroz Solto</div>
-        <div class="escolha"><input type="radio" name="tipo_Arroz" value="arrozLeite"> Arroz de Leite</div>
-        <div class="escolha"><input type="radio" name="tipo_Arroz" value="semArroz"> Sem Arroz</div>
-    
-        <h4>Opcionais:</h4>
-        <div class="escolha"><input type="checkbox" name="opcionais" value="macarrao"> Macarrão</div>
-        <div class="escolha"><input type="checkbox" name="opcionais" value="verduras"> Verduras
-    
-        <h4>Escolha sua carne:</h4>
-        <div class="escolha"><input type="checkbox" name="carnes" value="frango"> Frango</div>
-        <div class="escolha"><input type="checkbox" name="carnes" value="carne"> Carne</div>
-        <div class="escolha"><input type="checkbox" name="carnes" value="linguica"> Linguiça</div>
-    
-        <div class="escolha"><label for="obs">Observações:</label>
-        <input type="text" name="obs" id="obs">
+    <div class="container">
+        <div class="quentinha">
+            <img src="" alt="quentinha">
         </div>
-        <input type="submit" value="Enviar Pedido">
-    </form>
+        <div class="pedido">
+            <form action="/pedindo" method="post">
+                
+                <h4>Tipo de feijão</h4>
 
-    <p>{{ mensagem }}</p>
+                <div class="input"><input type="radio" name="tipo_Feijao" value="feijaoCarioca"> Feijão Carioca</div>
+                <div class="input"><input type="radio" name="tipo_Feijao" value="feijaoMacassar"> Feijão Macassar</div>
+                <div class="input"><input type="radio" name="tipo_Feijao" value="feijaoPreto"> Feijão Preto</div>
+                <div class="input"><input type="radio" name="tipo_Feijao" value="semFeijao"> Sem Feijão</div>
+            
+                <h4>Tipo de Arroz:</h4>
+                <div class="input"><input type="radio" name="tipo_Arroz" value="arrozSolto"> Arroz Solto</div>
+                <div class="input"><input type="radio" name="tipo_Arroz" value="arrozLeite"> Arroz de Leite</div>
+                <div class="input"><input type="radio" name="tipo_Arroz" value="semArroz"> Sem Arroz</div>
+            
+                <h4>Opcionais:</h4>
+                <div class="input"><input type="checkbox" name="opcionais" value="macarrao"> Macarrão</div>
+                <div class="input"><input type="checkbox" name="opcionais" value="verduras"> Verduras
+            
+                <h4> sua carne:</h4>
+                <div class="input"><input type="checkbox" name="carnes" value="frango"> Frango</div>
+                <div class="input"><input type="checkbox" name="carnes" value="carne"> Carne</div>
+                <div class="input"><input type="checkbox" name="carnes" value="linguica"> Linguiça</div>
+                    
+                <div class="input"><label for="local_Entrega">Local de entrega(Não preencha e concluiremos que você irá pegar no estabelecimento)</label></div>
+                <div class="input"><input type="text" name="local_Entrega"></input></div>
+                
+                <div class="input"><label for="horario_Entrega">Horario de entrega</label></div>
+                <div class="input"><input type="time" name="horario_Entrega"></input></div>
+
+                <div class="input"><label for="obs">Observações:</label>
+                <input type="text" name="obs" class="input" id="obs">
+                </div>
+                <input type="submit" value="Enviar Pedido" class="botao-solicitar">
+            </form>
+        </div>
+        
+    </div>
+    <div class="mensagem">
+        <p>{{ mensagem }}</p>
+    </div>
+
+    
 {% endblock %}

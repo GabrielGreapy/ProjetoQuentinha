@@ -1,52 +1,32 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lista</title>
-        <style>
-            body {
-                background-color: #f8f9fa;
-                font-family: Arial, sans-serif;
-            }
-            .pedido-container {
-                max-width: 600px;
-                margin: 30px auto;
-                background: white;
-                padding: 20px;
-                border-radius: 10px;
-                box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-            }
-            .pedido-item {
-                display: flex;
-                justify-content: space-between;
-                padding: 10px;
-                border-bottom: 1px solid #ddd;
-            }
-            .pedido-item:last-child {
-                border-bottom: none;
-            }
-            .pedido-id {
-                font-weight: bold;
-                color: #007bff;
-            }
-            .pedido-nome {
-                color: #333;
-            }
-        </style>
-</head>
-<body>
-    <div class="pedido-container">
-        <h3 class="text-center">Lista de Pedidos</h3>
-        {% for pedido in pedidos %}
-        <a href="/lista/{{ pedido[0] }}">
-            <div class="pedido-item">
-                <span class="pedido-id">#{{ pedido[0] }}</span>
-                <span class="pedido-nome">{{ pedido[1] }}</span>
-            </div>
-        </a>
-        {% endfor %}
+{% extends "home.html" %}
 
+{% block title %}Lista de Pedidos{% endblock %}
+
+{% block subtitle %}{% endblock %}
+
+{% block content %}
+
+    <div class="container">   
+        <h3 class="text-center">Lista de Pedidos</h3>
     </div>
-</body>
-</html>
+    
+
+                {% for pedido in pedidos %}    
+                    <div class="container">
+                        <div class="coluna_lista">
+                            <a href="/lista/{{ pedido[0] }}">
+                                <div class="papel-div">
+                                    <img src="/static/papel.png" class="papel" alt="papel">
+                                        <span class="pedido-id">#{{ pedido[1] }}</span>
+                                        <span class="pedido-nome">{{ pedido[2] }}</span>
+                                        <span class="pedido-infoEntrega">{{ pedido[13] }}</span>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                {% endfor %}
+            
+    </div>
+
+{% endblock %}

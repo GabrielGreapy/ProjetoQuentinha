@@ -1,142 +1,355 @@
-body {
-    font-family: 'Arial', sans-serif;
-    background-color: #f8f9fa;
-    padding: 20px;
+*{
     margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+    font-family: "Alte-Regular";
+}
+button{
+    height: 40px;
+    width: 200px;
+}
+:root{
+    --primary: #db0007;
+    --light: #fff;
+    --dark: #00172d;
+    ---rgba: rgba(0,0,0,0.2)
+}
+nav{
+    display: flex;
+    box-shadow: var(---rgba);
+    width: 90%;
+    align-items: center;
+    justify-content: space-evenly;
+
+}
+nav ul{
+    width: 100%;
+    list-style: none;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center
+}
+nav li{
+    height: 50px;
+    display: flex;
+    align-items: center;
+    
+
+}
+nav a {
+    height: 100%;
+    padding: 0 30px;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    color: black;
+}
+nav li:first-child{
+    margin-right: auto;
+    
+}
+footer{
     display: flex;
     justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-}
-
-
-.container-xxl {
-    background-color: #007bff;
-    color: white;
-    padding: 20px;
-    text-align: center;
-    border-radius: 10px;
-    margin-bottom: 20px;
-    font-size: 24px;
-    font-weight: bold;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-.container-md {
-    background-color: #ffffff;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    text-align: center;
-    margin-bottom: 20px;
-    font-size: 18px;
-    font-weight: bold;
-}
-
-.container-fluid {
-    background-color: white;
-    padding: 30px;
-    border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    max-width: 600px;
-    margin: auto;
-}
-
-
-form {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-}
-
-
-label {
-    font-weight: bold;
-    margin-top: 10px;
-    display: block;
-}
-
-
-input[type="text"] {
-    padding: 12px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+    background-color: #f0f0f0;
     width: 100%;
-    font-size: 16px;
-}
-
-
-input[type="submit"] {
-    background-color: #28a745;
-    color: white;
-    padding: 12px;
-    border: none;
-    border-radius: 5px;
-    font-size: 18px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: background 0.3s;
-}
-
-input[type="submit"]:hover {
-    background-color: #218838;
-}
-
-
-.opcoes {
-    display: flex;
-    flex-direction: column;
-    gap: 15px; 
-}
-
-.opcoes label {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    font-size: 16px;
-    cursor: pointer;
-}
-
-
-input[type="radio"],
-input[type="checkbox"] {
-    transform: scale(1.2);
-    margin-top: 5px;
-}
-
-
-.btn-pedir {
-    display: inline-block;
-    padding: 12px 20px;
-    background-color: #007bff;
-    color: white;
     text-decoration: none;
-    border-radius: 5px;
-    font-size: 18px;
+    list-style: none;
+}
+footer li{
+    width: 100%;
+    height: 30px;
+    margin: 15px 0 15px;
     text-align: center;
-    transition: background 0.3s;
-    margin: 10px 0;
+    text-decoration: none;
+    list-style: none;
 }
-
-.btn-pedir:hover {
-    background-color: #0056b3;
+footer a{
+    width: 100%;
+    text-decoration: none;
+    color: var(--dark);
 }
+    .titulo{
+        font-size: 15px;
+    }
+    .side-bar{
+        position: fixed;
+        top: 0;
+        right: 0;
+        height: 100vh;
+        width: 250px;
+        z-index: 1111;
+        background-color: #f0f0f0;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: flex-start;
+
+        transform: translateX(100%);
+        opacity: 0;
+        transition: transform 0.4s ease-in-out, opacity 0.4s ease-in-out;
+
+    }
+    .side-bar.ativa {
+        transform: translateX(0);
+        opacity: 1;
+    }
+    .side-bar ul{
+        display: flex;
+        flex-flow: column;
+        justify-content: center;
+    }
+    .side-bar li, .side-bar a{
+        width: 100%;
+    }
+    
+    .side-bar li:first-child{
+        display: flex;
+        justify-content: flex-end;
+        width: 93%;
+        
+        
+        
+    }
+    
 
 
-p {
-    text-align: center;
-    font-size: 18px;
-    font-weight: bold;
-    color: #dc3545;
-}
 
 
-.content {
-    text-align: center;
-}
 
-.welcome-text {
-    font-size: 24px;
-    font-weight: bold;
-    margin-bottom: 20px;
-}
+    .container{
+        display: flex;
+        justify-content: center;
+        width: 100%;
+    }
+    .header{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 90vw;
+        
+    }
+    .borda{
+        border:2px red solid;
+    }
+    .welcome{
+        display: flex;
+        height: 100vh;
+        width: 90%;
+        flex-flow: column;
+        align-items: center;
+        justify-content: center;
+        
+
+    }
+    .pedir{
+        display: flex;
+        justify-content: center;
+        height: 50px;
+        width: 50vw;
+        margin: 10px;
+    }
+    .pedir button{
+        background-color: #fdea08;
+        border-radius: 5%;
+        height: 40px;
+        font-size: 15px;
+        width: 160px;
+        
+    }
+    .text{
+        height: 10vh;
+        width: 50vw;
+        text-align: center;
+        margin: 40px;
+    }
+    .cempx{
+        width: 200px;
+        height: 100px;
+    }
+    .pedido{
+        width: 90vw;
+        
+        display: flex;
+        justify-content: center;
+        align-items: center;    
+    }
+    .botao-solicitar{
+        background-color: #fdea08;
+        padding: 8px;
+        width: 100%;
+        height: 50px;
+        border-radius: 2%;
+    }
+    .input{
+        padding: 8px 0 8px;
+    }
+    #obs{
+        width: 100%;
+        height: 100px;
+    }
+    .pedido-detalhes{
+        padding: 5px 0 5px;
+    }
+    .pedido-container{
+        display: flex;
+        width: 90%;
+        flex-flow: column;
+    }
+    .quentinha{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 90%;
+    }
+    .quentinha-vazia{
+        height: 200px;
+    }
+    #coluna{
+        flex-flow: column;
+    }
+    
+    .ingrediente{
+        position: absolute;
+    }
+    .feijao{
+        height: 170px;
+        
+    }
+    .arroz{
+        height: 135px;
+    }
+    .macarrao{
+        height: 170px;
+    }
+    .verduras{
+        height: 90px;
+        margin-left: 90px;
+    }
+    .frango{
+        height: 200px;
+        margin-bottom: 110px;
+    }
+    .carne{
+        height: 80px;
+        margin-right: 70px;
+    }
+    .linguica{
+        height: 180px;
+    }
+    .login{
+        display: flex;
+        justify-content: center;
+        height: 50px;
+        width: 50vw;
+        margin: 10px;
+    }
+    .login button{
+        background-color: #086209;
+        color: #fff;
+        border-radius: 5%;
+        height: 40px;
+        font-size: 15px;
+        width: 160px;
+    }
+    .loginform{
+        display: flex;
+        width: 90vw;
+        flex-flow: column;
+        height: 100px;
+        
+    }
+    
+    .svg{
+        fill: black;
+        width: 35px;
+
+    }
+    .forms-div{
+        display: flex;
+        
+        
+    }
+    .item-form{
+        display: flex;
+        flex-flow: column;
+        margin: 20px;
+        align-items: center;
+    }
+    .submit{
+        height: 30px;
+        width: 120px;
+    }
+    .lista-link{
+        display: flex;
+        flex-flow: column;
+        margin: 40px;
+        gap: 30px;
+    }
+    .papel-div{
+        display: flex;
+        width: 90%;
+        align-items: center;
+    }
+    .papel{
+        
+        width: 90%;
+        height: 200px;
+        z-index: 1;
+    }
+    .pedido-id {
+        position: absolute;
+        padding:0 40px 100px;
+        z-index: 2;
+    }
+    .pedido-nome {
+        position: absolute;
+        padding:0 40px 60px;
+        z-index: 2;
+    }
+    .perfilCliente{
+        display: flex;
+        flex-flow: column;
+        width: 90%;
+    }
+    .funcoes{
+        display: flex;
+        flex-flow: column;
+        width: 90%;
+    }
+    .containerCliente{
+        flex-flow: column;
+    }
+    .b100{
+        width: 100%;
+    }
+    .pedido-infoEntrega{
+        position: absolute;
+        padding:0 40px 20px;
+        z-index: 2;
+    }
+    .coluna_lista{
+        display: flex;
+        width: 90%;
+        justify-content: center;
+    }
+    .div-cardapio{
+        display: flex;
+        width: 90%;
+        height: 80vh;
+        justify-content: center;
+        align-items: center;
+
+    }
+    .div-carnes{
+        display: flex;
+        width: 90%;
+        flex-flow: column;
+        text-align: center;
+    }
+/* fonts */
+    @font-face {
+        font-family: "Alte-Regular";
+        src: url(/static/fonts/AlteHaasGroteskRegular.ttf);
+    }

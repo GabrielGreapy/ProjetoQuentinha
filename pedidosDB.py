@@ -1,35 +1,42 @@
 import sqlite3 as sqlite
 
+
 def criando_Tabela():
     conn = sqlite.connect('pedidosDB.sqlite')
     cursor = conn.cursor()
     cursor.execute('''
                 CREATE TABLE IF NOT EXISTS pedidos (
-                   id INTEGER PRIMARY KEY AUTOINCREMENT,
-                   nome_Cliente TEXT NOT NULL,
-                   tipo_Feijao TEXT,
-                   tipo_Arroz TEXT,
-                   macarrao TEXT,
-                   verdura TEXT,
-                   frango TEXT,
-                   carne TEXT,
-                   linguica TEXT,
-                   obs TEXT,
-                   preco FLOAT
-                   )
-               ''')
+                     id INTEGER PRIMARY KEY AUTOINCREMENT,
+                     id_Cliente INTEGER NOT NULL,
+                     nome_Cliente TEXT NOT NULL,
+                     tipo_Feijao TEXT,
+                     tipo_Arroz TEXT,
+                     macarrao TEXT,
+                     verdura TEXT,
+                     frango TEXT,
+                     carne TEXT,
+                     linguica TEXT,
+                     obs TEXT,
+                     preco REAL,
+                     horario_Entrega DATETIME,
+                     local_Entrega TEXT NOT NULL,
+                     hora_Do_Pedido DATETIME DEFAULT CURRENT_TIMESTAMP
+                )
+                ''')
     conn.commit()
     conn.close()
 
 
-def inserir(nome_Cliente, tipo_Feijao, tipo_Arroz, macarrao, verdura, frango, carne, linguica, obs, preco):
+
+
+def inserir(id_Cliente ,nome_Cliente, tipo_Feijao, tipo_Arroz, macarrao, verdura, frango, carne, linguica, obs, preco, horario_Entrega, local_Entrega):
     conn = sqlite.connect('pedidosDB.sqlite')
     cursor = conn.cursor()
     
     cursor.execute('''
-                   INSERT INTO pedidos (nome_Cliente, tipo_Feijao, tipo_Arroz, macarrao, verdura, frango, carne, linguica, obs, preco) 
-                   VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-                   ''', (nome_Cliente, tipo_Feijao, tipo_Arroz, macarrao, verdura, frango, carne, linguica, obs, preco))
+                   INSERT INTO pedidos (id_Cliente, nome_Cliente, tipo_Feijao, tipo_Arroz, macarrao, verdura, frango, carne, linguica, obs, preco, horario_Entrega, local_Entrega) 
+                   VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                   ''', (id_Cliente ,nome_Cliente, tipo_Feijao, tipo_Arroz, macarrao, verdura, frango, carne, linguica, obs, preco, horario_Entrega, local_Entrega))
     conn.commit()
     conn.close()
 

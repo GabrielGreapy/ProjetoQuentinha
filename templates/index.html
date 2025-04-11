@@ -6,15 +6,28 @@
 
 {% block content %}
 
-    <div class="content">
-        <div class="welcome-text">
-            Bem-vindo
+    <div class="container">
+        <div class="welcome">
+            <div class="text ">
+                <h1>Bem Vindo</h1>
+            </div>
+            <div class="pedir">
+                <a href="/login_cliente" class="">
+                    <button>Pedir Quentinha</button>
+                </a>
+            </div>
+            <div class="pedir">
+                <a href="/cardapio">
+                    <button class="">Cardápio de Hoje</button>
+                </a>
+            </div>
+            <div class="login">
+                <a href="/login_funcionario">
+                    <button>Apenas Funcionários</button>
+                </a>
+            </div>
+            
         </div>
-        <a href="/pedindo" class="btn-pedir">Pedir Quentinha</a>
-        <br>
-        <a href="/lista" class="btn-pedir">Lista de Pedidos</a>
     </div>
 
-</body>
-</html>
 {% endblock %}
