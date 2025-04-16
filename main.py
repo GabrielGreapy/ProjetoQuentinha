@@ -185,17 +185,11 @@ def cardapio():
 def carnes():
     if 'funcionario_nome' in session:
         if request.method == "POST":
-            try:
-                carne = int(request.form.get("carne", 0))
-                linguica = int(request.form.get("linguica", 0))
-                frango = int(request.form.get("frango", 0))
-                if carne >= 0 and linguica >= 0 and frango >= 0:
-                    carnesDB.modificar_Estoque(carne, linguica, frango)
-                    print("O estoque foi modificado.")
-                else:
-                    print("Valores inválidos! Os números devem ser positivos.")
-            except ValueError:
-                print("Erro: os valores fornecidos não são válidos. Por favor, insira números válidos.")
+            
+            carne = int(request.form.get("carne", 0))
+            linguica = int(request.form.get("linguica", 0))
+            frango = int(request.form.get("frango", 0))
+            carnesDB.modificar_Estoque(carne, linguica, frango)
         mantimentos = carnesDB.info_Estoque()
         mantimentos_carne = mantimentos['carne']
         mantimentos_linguica = mantimentos['linguica']

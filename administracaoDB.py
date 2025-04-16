@@ -53,13 +53,6 @@ def inserir_Funcionario(nome_Funcionario, email_Funcionario, senha_Funcionario):
     conn.close()
 
 
-def conectar_Tabela_Clientes():
-    conn = sqlite.connect('administracaoDB.sqlite')
-    conn.row_factory = sqlite.Row
-    return conn
-
-
-
 def pegar_Clientes(email, senha):
     conn = sqlite.connect('administracaoDB.sqlite')
     conn.row_factory = sqlite.Row 

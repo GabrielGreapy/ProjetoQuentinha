@@ -40,6 +40,18 @@ def inserir(id_Cliente ,nome_Cliente, tipo_Feijao, tipo_Arroz, macarrao, verdura
     conn.commit()
     conn.close()
 
+
+def retirar(id):
+    conn = sqlite.connect('pedidosDB.sqlite')
+    cursor = conn.cursor()
+
+    cursor.execute('''
+                    DELETE pedidos WHERE id = ?
+                    ''', (id))
+    conn.commit()
+    conn.close()
+
+
 def listar_Pedidos():
     conn = sqlite.connect('pedidosDB.sqlite')
     cursor = conn.cursor()

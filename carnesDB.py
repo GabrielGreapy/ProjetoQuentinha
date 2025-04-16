@@ -65,11 +65,21 @@ def modificar_Estoque(mod_Carne, mod_Linguica, mod_Frango):
 
     
     id = carnes_Do_Dia['id']
-    carne = carnes_Do_Dia['carne'] + mod_Carne
-    linguica = carnes_Do_Dia['linguica'] + mod_Linguica
+    carne = carnes_Do_Dia['carne']
+    if carne < 0:
+        carne -= mod_Carne
+    else:
+        carne += mod_Carne
+    linguica = carnes_Do_Dia['linguica']
+    if linguica < 0:
+        linguica -= mod_Linguica
+    else: 
+        linguica += mod_Linguica
     frango = carnes_Do_Dia['frango'] + mod_Frango
-
-    # Atualizando os dados no banco de dados
+    if frango < 0:
+        frango -= mod_Frango
+    else:
+        frango += mod_Frango
     conn = sqlite.connect('mantimentosDB.sqlite')
     cursor = conn.cursor()
     cursor.execute(''' 
