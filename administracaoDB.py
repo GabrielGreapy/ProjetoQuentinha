@@ -15,6 +15,9 @@ def criando_Tabela_Administracao():
     conn.close()
 
 
+
+
+
 def criando_Tabela_Clientes():
     conn = sqlite.connect('administracaoDB.sqlite')
     cursor = conn.cursor()
@@ -53,6 +56,9 @@ def inserir_Funcionario(nome_Funcionario, email_Funcionario, senha_Funcionario):
     conn.close()
 
 
+
+
+
 def pegar_Clientes(email, senha):
     conn = sqlite.connect('administracaoDB.sqlite')
     conn.row_factory = sqlite.Row 
@@ -67,11 +73,19 @@ def pegar_Clientes(email, senha):
     return dict(clientes) if clientes else None
 
 
-
-def conectar_Tabela_Funcionarios():
+def conta_Indivindual(email, senha):
     conn = sqlite.connect('administracaoDB.sqlite')
-    conn.row_factory = sqlite.Row
-    return conn
+    conn.row_factory = sqlite.Row 
+    cursor = conn.cursor()
+    cursor.execute('''
+        SELECT * FROM clientes
+        WHERE email_Cliente = ? 
+        AND senha_Cliente = ?
+        ''',(email, senha))
+    clientes = cursor.fetchone()
+    conn.close()
+    return dict(clientes) if clientes else None
+
 
 
 def pegar_Funcionarios(email, senha):
@@ -109,12 +123,11 @@ def Gabriel2( nome, email, senha, numero):
 
 
 
-
-
-
 criando_Tabela_Administracao()
 criando_Tabela_Clientes()
 
+# Gabriel("gab@gab", "Gabriel", "123")
+# Gabriel2("Gabriel", "gab@gab", "123", 321)
 
 
 

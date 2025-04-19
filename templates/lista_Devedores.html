@@ -1,0 +1,36 @@
+{% extends "home.html" %}
+
+{% block title %}Projeto Quentinhas{% endblock %}
+
+{% block subtitle %}{% endblock %}
+
+{% block content %}
+
+
+    <div class="container">
+        <div class="container-contas">
+            <ul>
+                <li>
+                    <div class="conta-individual-nome">
+                        <div class="area-conta-nome">
+                            Nome do cliente
+                        </div>
+                    </div>
+                </li>
+                {% for devedor in devedores %}
+                    <li>
+                        <a href="/devedores/{{ devedor[0] }}">
+                            <div class="conta-individual-nome">
+                                <div class="area-conta-nome">
+                                    {{ devedor[1] }}
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+
+
+{% endblock %}

@@ -56,7 +56,7 @@ def listar_Pedidos():
     conn = sqlite.connect('pedidosDB.sqlite')
     cursor = conn.cursor()
     cursor.execute(
-        'SELECT * FROM pedidos order by id desc'
+        '''SELECT * FROM pedidos order by id desc'''
         )
     dados = cursor.fetchall()
     pedidos = []

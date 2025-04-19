@@ -7,6 +7,7 @@ import pedidosDB
 import administracaoDB
 import cardapioDB
 import carnesDB
+import dividasDB
 app.config['SECRET_KEY'] = 'bananadog'
 
 
@@ -206,6 +207,66 @@ def novo_Dia():
     else: return redirect(url_for("login_Funcionario"))
 
 
+@app.route("/historico_Dividas")
+def historico_Dividas():
+    if 'funcionario_nome' in session:
+        dividas = dividasDB.listar_Dividas()
+        return render_template("historico_Dividas.html" , dividas=dividas)
+    else: 
+        return redirect(url_for("login_Funcionario"))
+
+
+
+
+
+@app.route("/adicionar_Conta", methods=("POST", "GET"))
+def adicionar_Conta():
+    if 'funcionario_nome' in session:
+        if request.method == "POST":
+            nome = request.form.get("devedor", "").strip()
+            if nome:
+                dividasDB.inserir_Devedor(nome)
+        return render_template("adicionar_Conta.html")
+    else: 
+        return redirect(url_for("login_Funcionario"))    
+
+
+@app.route("/lista_Devedores")
+def lista_Devedores():
+    if 'funcionario_nome' in session:
+        devedores = dividasDB.listar_Devedores()
+        return render_template("lista_Devedores.html", devedores=devedores)
+    else: 
+        return redirect(url_for("login_Funcionario"))  
+
+
+@app.route("/devedores/<int:id>")
+def devedor(id):
+        if 'funcionario_nome' in session:
+            dividas_Do_Devedor = dividasDB.pegar_Dividas(id)
+            total = 0
+            for divida in dividas_Do_Devedor:
+                conta = divida[3]
+                if "," in conta:
+                    conta_nova = conta.replace( "," , ".")
+                    conta = float(conta_nova)
+                total += conta
+            return render_template("devedor.html", dividas=dividas_Do_Devedor, id=id, total=total)
+        else: 
+            return redirect(url_for("login_Funcionario"))  
+
+
+@app.route("/devedores/<int:id>/<int:id_divida>", methods = ("POST", "GET"))
+def divida(id, id_divida):
+    if 'funcionario_nome' in session:
+        id = id
+        devedor = dividasDB.pegar_Devedor(id)
+        id_divida = id_divida
+        divida = dividasDB.pegar_Divida(id_divida)
+
+        return render_template("divida.html", divida=divida, devedor=devedor)
+    else: 
+        return redirect(url_for("login_Funcionario"))  
 
 if __name__ == "__main__":
     app.run(debug=True)
