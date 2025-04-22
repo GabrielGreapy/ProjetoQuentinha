@@ -60,8 +60,8 @@ def pedindo():
                 preco += 2
             horario_Entrega = request.form.get('horario_Entrega', '').strip()
             obs = request.form.get('obs', '')
-
-            pedidosDB.inserir(id_Cliente, nome_Cliente, tipo_Feijao, tipo_Arroz, macarrao, verduras, frango, carne, linguica, obs, preco, horario_Entrega, local_Entrega)
+            pagamento = request.form.get("pagamento", "").strip()
+            pedidosDB.inserir(id_Cliente, nome_Cliente, tipo_Feijao, tipo_Arroz, macarrao, verduras, frango, carne, linguica, obs, preco, horario_Entrega, local_Entrega, pagamento)
             mensagem = 'Pedido mandado, muito bem'
             return redirect(url_for("cliente_Perfil"))
         else:

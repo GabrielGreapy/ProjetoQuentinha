@@ -103,6 +103,16 @@ footer a {
     text-decoration: none;
     color: var(--dark);
 }
+select{
+    width: 70vw;
+    appearance: none;
+    font: inherit;
+    padding: 1rem;
+    border: none;
+    border-radius: 1rem;
+    line-height: 1.6rem;
+    margin: 1rem 0 1rem;
+}
 
 .titulo {
     font-size: 15px;
@@ -161,6 +171,7 @@ footer a {
     display: flex;
     justify-content: center;
     width: 100%;
+    margin: 1.6rem 0rem 1.6rem 0rem;
 }
 
 .header {
@@ -217,11 +228,22 @@ footer a {
 
 .pedido {
     width: 90vw;
-
     display: flex;
+    box-shadow: 2px 2px 10px var(---rgba);
+    align-items: center;
     justify-content: center;
     align-items: center;
+    flex-flow: row;
 }
+.pedido-seccao{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 90%;
+    padding: 10px 20px;
+    
+}
+
 
 .botao-solicitar {
     background-color: #fdea08;
@@ -248,6 +270,8 @@ footer a {
     display: flex;
     width: 90%;
     flex-flow: column;
+    align-items: center;
+    box-shadow: 2px 2px 10px var(---rgba);
 }
 
 .quentinha {
@@ -334,6 +358,8 @@ footer a {
 
 .forms-div {
     display: flex;
+    height: 80vh;
+    align-items: center;
 
 
 }
@@ -361,6 +387,15 @@ footer a {
     display: flex;
     width: 90%;
     align-items: center;
+}
+.papel-div span {
+    width: 18ch;
+    white-space: nowrap;    
+    overflow: hidden;       
+    text-overflow: ellipsis;
+    color: black;
+    text-decoration: none;
+
 }
 
 .papel {
@@ -395,7 +430,10 @@ footer a {
 }
 
 .containerCliente {
+    display: flex;
+    height: 80vh;
     flex-flow: column;
+    align-items: center;
 }
 
 .b100 {
@@ -420,6 +458,7 @@ footer a {
     height: 80vh;
     justify-content: center;
     align-items: center;
+    box-shadow: 2px 2px 10px var(---rgba);
 
 }
 
@@ -458,7 +497,18 @@ footer a {
     justify-content: center;
     border-right: #727988 1px solid;
 }
-
+.verde{
+    background-color: #1ea362;
+    color: #fff;
+}
+.vermelho{
+    background-color: #db0007;
+    color: #fff;
+}
+.obs{
+    height: 300px;
+    width: 100%;
+}
 
 /* fonts */
 @font-face {

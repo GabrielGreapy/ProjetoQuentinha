@@ -7,28 +7,34 @@
 {% block content %}
     <div class="container">
         <div class="quentinha">
-            <img src="" alt="quentinha">
+            <img src="/static/marmita_vazia.png" alt="quentinha" class="quentinha-vazia">
         </div>
+    </div>
+    <div class="container">
         <div class="pedido">
             <form action="/pedindo" method="post">
+                <div class="pedindo-seccao">
+                    <select name="tipo_Feijao" id="">
+                        <option value="semFeijao">Sem Feijao</option>
+                        <option value="feijaoCarioca">Feijão Carioca</option>
+                        <option value="feijaoMacassar">Feijão Macassar</option>
+                        <option value="feijaoPreto">Feijão Preto</option>
+                    </select>
+                </div>
+                <div class="pedindo-seccao">
+                    <select name="tipo_Arroz" id="">
+                        <option value="semArroz">Sem arroz</option>
+                        <option value="arrozSolto">Arroz Refogado(Solto)</option>
+                        <option value="arrozLeite">Arroz De Leite(Doce)</option>
+                    </select>
+                </div>
+                <div class="pedindo-seccao">
+                    <h4>Opcionais:</h4>
+                    <div class="input"><input type="checkbox" name="opcionais" value="macarrao"> Macarrão</div>
+                    <div class="input"><input type="checkbox" name="opcionais" value="verduras"> Verduras
+                </div>
+                <h4>Carnes:</h4>
                 
-                <h4>Tipo de feijão</h4>
-
-                <div class="input"><input type="radio" name="tipo_Feijao" value="feijaoCarioca"> Feijão Carioca</div>
-                <div class="input"><input type="radio" name="tipo_Feijao" value="feijaoMacassar"> Feijão Macassar</div>
-                <div class="input"><input type="radio" name="tipo_Feijao" value="feijaoPreto"> Feijão Preto</div>
-                <div class="input"><input type="radio" name="tipo_Feijao" value="semFeijao"> Sem Feijão</div>
-            
-                <h4>Tipo de Arroz:</h4>
-                <div class="input"><input type="radio" name="tipo_Arroz" value="arrozSolto"> Arroz Solto</div>
-                <div class="input"><input type="radio" name="tipo_Arroz" value="arrozLeite"> Arroz de Leite</div>
-                <div class="input"><input type="radio" name="tipo_Arroz" value="semArroz"> Sem Arroz</div>
-            
-                <h4>Opcionais:</h4>
-                <div class="input"><input type="checkbox" name="opcionais" value="macarrao"> Macarrão</div>
-                <div class="input"><input type="checkbox" name="opcionais" value="verduras"> Verduras
-            
-                <h4> sua carne:</h4>
                 <div class="input"><input type="checkbox" name="carnes" value="frango"> Frango</div>
                 <div class="input"><input type="checkbox" name="carnes" value="carne"> Carne</div>
                 <div class="input"><input type="checkbox" name="carnes" value="linguica"> Linguiça</div>
@@ -39,17 +45,26 @@
                 <div class="input"><label for="horario_Entrega">Horario de entrega</label></div>
                 <div class="input"><input type="time" name="horario_Entrega"></input></div>
 
-                <div class="input"><label for="obs">Observações:</label>
-                <input type="text" name="obs" class="input" id="obs">
+                <div class="pedindo-seccao">
+                    <label for="Observações">Observações</label>
+                    <textarea name="obs" class="input" id="obs"></textarea>
                 </div>
+                <div class="pedindo-seccao">
+                    <label for="pagamento">Forma de pagamento</label>
+                    <select name="pagamento" id="">
+                        <option value="Pessoalmente">Pessoalmente</option>
+                        <option value="Pix">Pix</option>
+                        <option value="Cartão">Cartão</option>
+            
+                    </select>
+                </div>
+                
                 <input type="submit" value="Enviar Pedido" class="botao-solicitar">
             </form>
         </div>
         
     </div>
-    <div class="mensagem">
-        <p>{{ mensagem }}</p>
-    </div>
+    
 
     
 {% endblock %}

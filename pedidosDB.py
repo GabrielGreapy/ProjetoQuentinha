@@ -20,7 +20,9 @@ def criando_Tabela():
                      preco REAL,
                      horario_Entrega DATETIME,
                      local_Entrega TEXT NOT NULL,
-                     hora_Do_Pedido DATETIME DEFAULT CURRENT_TIMESTAMP
+                     hora_Do_Pedido DATETIME DEFAULT CURRENT_TIMESTAMP,
+                     status_Pedido TEXT NOT NULL,
+                     forma_Pagamento TEXT NOT NULL
                 )
                 ''')
     conn.commit()
@@ -29,14 +31,15 @@ def criando_Tabela():
 
 
 
-def inserir(id_Cliente ,nome_Cliente, tipo_Feijao, tipo_Arroz, macarrao, verdura, frango, carne, linguica, obs, preco, horario_Entrega, local_Entrega):
+def inserir(id_Cliente ,nome_Cliente, tipo_Feijao, tipo_Arroz, macarrao, verdura, frango, carne, linguica, obs, preco, horario_Entrega, local_Entrega, forma_Pagamento):
+    status_Pedido = "Não Entregue"
     conn = sqlite.connect('pedidosDB.sqlite')
     cursor = conn.cursor()
     
     cursor.execute('''
-                   INSERT INTO pedidos (id_Cliente, nome_Cliente, tipo_Feijao, tipo_Arroz, macarrao, verdura, frango, carne, linguica, obs, preco, horario_Entrega, local_Entrega) 
-                   VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-                   ''', (id_Cliente ,nome_Cliente, tipo_Feijao, tipo_Arroz, macarrao, verdura, frango, carne, linguica, obs, preco, horario_Entrega, local_Entrega))
+                   INSERT INTO pedidos (id_Cliente, nome_Cliente, tipo_Feijao, tipo_Arroz, macarrao, verdura, frango, carne, linguica, obs, preco, horario_Entrega, local_Entrega, forma_Pagamento, status_Pedido) 
+                   VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                   ''', (id_Cliente ,nome_Cliente, tipo_Feijao, tipo_Arroz, macarrao, verdura, frango, carne, linguica, obs, preco, horario_Entrega, local_Entrega, forma_Pagamento, status_Pedido))
     conn.commit()
     conn.close()
 
