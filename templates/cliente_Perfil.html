@@ -6,22 +6,45 @@
 
 {% block content %}
 
-    
     <div class="container">
-        <div class="containerCliente">
-            <div class="perfilCliente">
-                
-                <h1>Bem vindo(a) {{ nome }}</h1>
-                <h3>Seu telefone: {{ numero }}</h3>
-                
+        <div class="containerCliente-Perfil">
+            <div class="seccaoPerfil">
+                <h3>Olá {{ nome }}</h3>
+                <h4>Bem vindo ao Delicias da Silvania, como posso lhe ajudar hoje?</h4>
             </div>
             <div class="funcoes">
                 <a href="/pedindo">
                     <button class="b100">Pedir Quentinhas</button>
                 </a>
             </div>
+            <div class="quentinhasPedidasLista">
+                <div class="quentinhasPedidasUnidade">
+                    <h5>Historico</h5>
+                </div>
+                {% for pedido in pedidos %}
+                    <div class="quentinhasPedidasUnidade">
+                        <div>
+                            1x Quentinha de {{pedido['tipo_Feijao']}}
+                        </div>
+                        <div>
+                            Preço:{{pedido['preco']}} R$  
+
+                            
+                        </div>
+                        <div>
+                            Pagamento:{{pedido['forma_Pagamento']}}, {{pedido['status_Pedido']}}
+                        </div>
+                        <div>
+                            <button class="vermelho">Cancelar</button><button>Editar</button>
+                        </div>
+                        
+                        
+                        
+                        
+                    </div>
+                {% endfor %}
+            </div>
         </div>
-        
     </div>
 
 

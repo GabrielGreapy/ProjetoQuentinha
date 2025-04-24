@@ -54,6 +54,19 @@ def retirar(id):
     conn.commit()
     conn.close()
 
+def entregue(id):
+    status = "Entregue"
+    conn = sqlite.connect('pedidosDB.sqlite')
+    cursor = conn.cursor()
+
+    cursor.execute('''
+                    UPDATE pedidos
+                    SET status_Pedido = ?
+                    WHERE id = ?
+                    ''', (status, id))
+    conn.commit()
+    conn.close()
+
 
 def listar_Pedidos():
     conn = sqlite.connect('pedidosDB.sqlite')
@@ -79,6 +92,15 @@ def id_buscar(pedido_id):
     conn.close()
     return pedido
 
+def pedidosDeCliente(id):
+    conn = sqlite.connect('pedidosDB.sqlite')
+    conn.row_factory = sqlite.Row
+    cursor = conn.cursor()
+    cursor.execute('''SELECT * FROM pedidos WHERE id_Cliente = ?''', (id, ))
+    dados = cursor.fetchall()
+    conn.close()
+    pedidos = [dict(dado) for dado in dados]
+    return pedidos
 
 
 criando_Tabela()

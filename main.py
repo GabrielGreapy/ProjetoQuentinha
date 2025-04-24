@@ -36,34 +36,34 @@ def pedindo():
             if not local_Entrega:
                 local_Entrega = 'Buscará no estabelecimento'
             preco = 12
-            macarrao = "nao"
-            verduras = "nao"
-            frango = "nao"
-            carne = "nao"
-            linguica = "nao"
+            macarrao = "Não"
+            verduras = "Não"
+            frango = "Não"
+            carne = "Não"
+            linguica = "Não"
 
             
             if "macarrao" in opcionais:
-                macarrao = "sim"
+                macarrao = "Sim"
                 
             if "verduras" in opcionais:
-                verduras = "sim"
+                verduras = "Sim"
 
             if "carne" in carnes:
-                carne = "sim"
+                carne = "Sim"
                 preco += 2
             if "frango" in carnes:
-                frango = "sim"
+                frango = "Sim"
                 preco += 2
             if "linguica" in carnes:
-                linguica = "sim"
+                linguica = "Sim"
                 preco += 2
             horario_Entrega = request.form.get('horario_Entrega', '').strip()
             obs = request.form.get('obs', '')
             pagamento = request.form.get("pagamento", "").strip()
             pedidosDB.inserir(id_Cliente, nome_Cliente, tipo_Feijao, tipo_Arroz, macarrao, verduras, frango, carne, linguica, obs, preco, horario_Entrega, local_Entrega, pagamento)
             mensagem = 'Pedido mandado, muito bem'
-            return redirect(url_for("cliente_Perfil"))
+            return redirect(url_for("cliente_Perfil", id=session['id_Cliente']))
         else:
             mensagem = 'O seu nome está em branco, por favor informe-nos um nome para que possamos distinguir seu pedido'
 
@@ -127,18 +127,20 @@ def login_cliente():
                 session['nome_Cliente'] = cliente['nome_Cliente']
                 session['numero_Cliente'] = cliente['numero_Cliente']
                 session['id_Cliente'] = cliente['id_Cliente']
-                return redirect(url_for("cliente_Perfil"))
+                return redirect(url_for("cliente_Perfil", id=session['id_Cliente']))
             else: mensagem = 'Cliente não existe'
         else: mensagem = 'Preencha as informações'
     return render_template("login_cliente.html", mensagem=mensagem)
 
 
-@app.route("/cliente_Perfil")
-def cliente_Perfil():
+@app.route("/cliente_Perfil/<int:id>")
+def cliente_Perfil(id):
     if 'nome_Cliente' in session:
+        id = id
         nome = session['nome_Cliente']
         numero = session['numero_Cliente']
-        return render_template("cliente_Perfil.html", nome=nome , numero=numero)
+        pedidos = pedidosDB.pedidosDeCliente(id)
+        return render_template("cliente_Perfil.html", nome=nome , numero=numero, pedidos=pedidos)
     else: return redirect(url_for("/login_cliente"))
 
 
@@ -267,6 +269,27 @@ def divida(id, id_divida):
         return render_template("divida.html", divida=divida, devedor=devedor)
     else: 
         return redirect(url_for("login_Funcionario"))  
+
+
+@app.route("/lista/<int:id_pedido>/entregue")
+def pedidoEntregue(id_pedido):
+    if 'funcionario_nome' in session:
+        id = id_pedido
+        pedidosDB.entregue(id)
+        return redirect(url_for("lista"))  
+    else:
+        return redirect(url_for("login_Funcionario"))
+    
+
+@app.route("/lista/<int:id_pedido>/retirar")
+def excluirPedido(id_pedido):
+    if 'funcionario_nome' in session:
+        id = id_pedido
+        pedidosDB.retirar(id)
+        return redirect(url_for("lista"))  
+    else:
+        return redirect(url_for("login_Funcionario"))
+    
 
 if __name__ == "__main__":
     app.run(debug=True)

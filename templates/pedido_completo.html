@@ -25,6 +25,10 @@
 
             <div class="pedido-detalhes"><span class="pedido-detalhes">Local de entrega:</span> {{ pedido[13] }}</div>
             <div class="pedido-detalhes"><span class="pedido-detalhes">Horario que foi pedido:</span> {{ pedido[14] }}</div>
+
+            <div class="pedido-detalhes"><span class="pedido-detalhes">Estado do pedido:</span> {{ pedido[15] }}</div>
+
+            <div class="pedido-detalhes"><span class="pedido-detalhes">Forma de pagamento:</span> {{ pedido[16] }}</div>
         </div>
     </div>
     <div class="container">
@@ -75,10 +79,10 @@
         <div class="lista-link">
             <ul>
                 <li>
-                    <button class="verde">Pedido Entregue</button>
+                    <a href="/lista/{{pedido [0]}}/entregue"><button class="verde">Pedido Entregue</button></a>
                 </li>
                 <li>
-                    <button class="vermelho">Excluir pedido</button>
+                    <a href="/lista/{{pedido [0]}}/retirar"><button class="vermelho">Excluir pedido</button></a>
                 </li>
 
             </ul>
