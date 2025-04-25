@@ -291,5 +291,27 @@ def excluirPedido(id_pedido):
         return redirect(url_for("login_Funcionario"))
     
 
+@app.route("/cliente_Perfil/<int:id>/<int:id_pedido>/cancelar")
+def cancelarPedido(id, id_pedido):
+    if 'nome_Cliente' in session:
+        id = id
+        id_pedido = id_pedido
+        pedidosDB.canceladoCliente(id_pedido)
+        return redirect(url_for("cliente_Perfil", id = id))
+    else:
+        return redirect(url_for("login_Funcionario"))
+
+
+@app.route ("/cliente_Perfil/<int:id_cliente>/<int:id_pedido>/editar", methods=("POST", "GET"))
+def editarPedido(id_cliente, id_pedido):
+    if 'nome_Cliente' in session:
+        if request.form == "POST":
+            id = id_cliente
+            id_pedido = id_pedido
+            return redirect(url_for("cliente_Perfil", id = id))
+        return render_template("editar_pedido.html")
+    else:
+        return redirect(url_for("/login_cliente"))
+
 if __name__ == "__main__":
     app.run(debug=True)

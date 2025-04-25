@@ -35,12 +35,14 @@
                             Pagamento:{{pedido['forma_Pagamento']}}, {{pedido['status_Pedido']}}
                         </div>
                         <div>
-                            <button class="vermelho">Cancelar</button><button>Editar</button>
+                            <a  href="/cliente_Perfil/{{pedido['id_Cliente']}}/{{pedido['id']}}/cancelar">
+                                <button class="vermelho">Cancelar</button>
+                            </a>
+                            
+                            <a href="/cliente_Perfil/{{pedido['id_Cliente']}}/{{pedido['id']}}/editar">
+                                <button>Editar</button>
+                            </a>
                         </div>
-                        
-                        
-                        
-                        
                     </div>
                 {% endfor %}
             </div>

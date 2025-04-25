@@ -49,8 +49,8 @@ def retirar(id):
     cursor = conn.cursor()
 
     cursor.execute('''
-                    DELETE pedidos WHERE id = ?
-                    ''', (id))
+                    DELETE FROM pedidos WHERE id = ?
+                    ''', (id,))
     conn.commit()
     conn.close()
 
@@ -102,5 +102,17 @@ def pedidosDeCliente(id):
     pedidos = [dict(dado) for dado in dados]
     return pedidos
 
+def canceladoCliente(id):
+    status = "Cancelado por Cliente"
+    conn = sqlite.connect('pedidosDB.sqlite')
+    cursor = conn.cursor()
+
+    cursor.execute('''
+                    UPDATE pedidos
+                    SET status_Pedido = ?
+                    WHERE id = ?
+                    ''', (status, id,))
+    conn.commit()
+    conn.close()
 
 criando_Tabela()
