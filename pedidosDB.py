@@ -72,6 +72,22 @@ def listar_Pedidos():
     conn = sqlite.connect('pedidosDB.sqlite')
     cursor = conn.cursor()
     cursor.execute(
+        '''SELECT * FROM pedidos WHERE status_Pedido = "Não Entregue"
+            ORDER BY id DESC'''
+        )
+    dados = cursor.fetchall()
+    pedidos = []
+    for dado in dados:
+        pedidos.append(dado)
+    conn.commit()
+    conn.close()
+    return pedidos
+
+
+def listar_Pedidos_Historico():
+    conn = sqlite.connect('pedidosDB.sqlite')
+    cursor = conn.cursor()
+    cursor.execute(
         '''SELECT * FROM pedidos order by id desc'''
         )
     dados = cursor.fetchall()
@@ -83,7 +99,6 @@ def listar_Pedidos():
     return pedidos
 
 
-
 def id_buscar(pedido_id):
     conn = sqlite.connect('pedidosDB.sqlite')
     cursor = conn.cursor()
@@ -93,6 +108,17 @@ def id_buscar(pedido_id):
     return pedido
 
 def pedidosDeCliente(id):
+    conn = sqlite.connect('pedidosDB.sqlite')
+    conn.row_factory = sqlite.Row
+    cursor = conn.cursor()
+    cursor.execute('''SELECT * FROM pedidos WHERE id_Cliente = ? AND status_Pedido = "Não Entregue"
+                   ''', (id, ))
+    dados = cursor.fetchall()
+    conn.close()
+    pedidos = [dict(dado) for dado in dados]
+    return pedidos
+
+def pedidosDeClienteHistorico(id):
     conn = sqlite.connect('pedidosDB.sqlite')
     conn.row_factory = sqlite.Row
     cursor = conn.cursor()
@@ -112,6 +138,23 @@ def canceladoCliente(id):
                     SET status_Pedido = ?
                     WHERE id = ?
                     ''', (status, id,))
+    conn.commit()
+    conn.close()
+
+
+def editarPedido(tipo_Feijao, tipo_Arroz, macarrao, verduras, frango, carne, linguica,
+                    obs, horario_Entrega, local_Entrega, preco, pagamento, id):
+    
+    conn = sqlite.connect('pedidosDB.sqlite')
+    cursor = conn.cursor()
+
+    cursor.execute('''
+                    UPDATE pedidos
+                    SET tipo_Feijao = ?, tipo_Arroz = ?, macarrao = ?, verdura = ?, frango = ?, carne = ?, linguica=?,
+                        obs = ?, horario_Entrega = ?, local_Entrega = ?, preco = ?, forma_Pagamento = ?
+                    WHERE id = ?
+                    ''', (tipo_Feijao, tipo_Arroz, macarrao, verduras, frango, carne, linguica,
+                    obs, horario_Entrega, local_Entrega, preco, pagamento,id))
     conn.commit()
     conn.close()
 

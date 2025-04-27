@@ -8,12 +8,16 @@
 
     <div class="container">
         <div class="lista-link">
+            <a href="/funcionario">
+                <button>Voltar</button>
+            </a>
             <a href="/adicionar_Conta">
                 <button>Adicionar conta</button>
             </a>
             <a href="/lista_Devedores">
                 <button>Lista organizada por nome</button>
             </a>
+            
         </div>
     </div>
     <div class="container">
@@ -35,7 +39,7 @@
                 <li>
                     {% for divida in dividas %}
                         
-                        <a href="/conta/{{ dividas[0] }}">
+                        <a href="/devedores/{{ divida[2] }}/{{ divida[0] }}">
                             <div class="conta-individual">
                                 <div class="area-conta">
                                     {{ divida[1] }}

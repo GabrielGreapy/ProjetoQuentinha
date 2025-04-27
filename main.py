@@ -36,28 +36,32 @@ def pedindo():
             if not local_Entrega:
                 local_Entrega = 'Buscará no estabelecimento'
             preco = 12
-            macarrao = "Não"
-            verduras = "Não"
-            frango = "Não"
-            carne = "Não"
-            linguica = "Não"
-
-            
-            if "macarrao" in opcionais:
+            if "Macarrão" in opcionais:
                 macarrao = "Sim"
+            else: 
+                macarrao = "Não"
                 
-            if "verduras" in opcionais:
+            if "Verduras" in opcionais:
                 verduras = "Sim"
+            else: 
+                verduras = "Não"
 
-            if "carne" in carnes:
+            if "Carne" in carnes:
                 carne = "Sim"
                 preco += 2
-            if "frango" in carnes:
+            else: 
+                carne = "Não"
+            if "Frango" in carnes:
                 frango = "Sim"
                 preco += 2
-            if "linguica" in carnes:
+            else:
+                frango = "Não"
+            if "Linguiça" in carnes:
                 linguica = "Sim"
                 preco += 2
+            else:
+                linguica = "Não"
+
             horario_Entrega = request.form.get('horario_Entrega', '').strip()
             obs = request.form.get('obs', '')
             pagamento = request.form.get("pagamento", "").strip()
@@ -140,7 +144,7 @@ def cliente_Perfil(id):
         nome = session['nome_Cliente']
         numero = session['numero_Cliente']
         pedidos = pedidosDB.pedidosDeCliente(id)
-        return render_template("cliente_Perfil.html", nome=nome , numero=numero, pedidos=pedidos)
+        return render_template("cliente_Perfil.html", nome=nome , numero=numero, pedidos=pedidos, id=id)
     else: return redirect(url_for("/login_cliente"))
 
 
@@ -189,9 +193,15 @@ def carnes():
     if 'funcionario_nome' in session:
         if request.method == "POST":
             
-            carne = int(request.form.get("carne", 0))
-            linguica = int(request.form.get("linguica", 0))
-            frango = int(request.form.get("frango", 0))
+            carne = int(request.form.get("carne", "")).strip()
+            if carne is None:
+                carne = 0
+            linguica = int(request.form.get("linguica", "")).strip()
+            if linguica is None:
+                linguica = 0
+            frango = int(request.form.get("frango", "")).strip()
+            if frango is None:
+                frango = 0
             carnesDB.modificar_Estoque(carne, linguica, frango)
         mantimentos = carnesDB.info_Estoque()
         mantimentos_carne = mantimentos['carne']
@@ -305,13 +315,75 @@ def cancelarPedido(id, id_pedido):
 @app.route ("/cliente_Perfil/<int:id_cliente>/<int:id_pedido>/editar", methods=("POST", "GET"))
 def editarPedido(id_cliente, id_pedido):
     if 'nome_Cliente' in session:
-        if request.form == "POST":
+        if request.method == "POST":
+            tipo_Feijao = request.form.get('tipo_Feijao', '')
+            tipo_Arroz = request.form.get('tipo_Arroz', '')
+            opcionais = request.form.getlist('opcionais')  
+            carnes = request.form.getlist('carnes')        
+            local_Entrega = request.form.get('local_Entrega', '').strip()
+            
+            if not local_Entrega:
+                local_Entrega = 'Buscará no estabelecimento'
+            preco = 12
+
+            if "Macarrão" in opcionais:
+                macarrao = "Sim"
+            else: 
+                macarrao = "Não"
+                
+            if "Verduras" in opcionais:
+                verduras = "Sim"
+            else: 
+                verduras = "Não"
+
+            if "Carne" in carnes:
+                carne = "Sim"
+                preco += 2
+            else: 
+                carne = "Não"
+            if "Frango" in carnes:
+                frango = "Sim"
+                preco += 2
+            else:
+                frango = "Não"
+            if "Linguiça" in carnes:
+                linguica = "Sim"
+                preco += 2
+            else:
+                linguica = "Não"
+
+            horario_Entrega = request.form.get('horario_Entrega', '').strip()
+            obs = request.form.get('obs', '')
+            pagamento = request.form.get("pagamento", "").strip()
+            pedidosDB.editarPedido(tipo_Feijao, tipo_Arroz, macarrao, verduras, frango, carne, linguica,
+                obs, horario_Entrega, local_Entrega, preco, pagamento, id_pedido)
             id = id_cliente
-            id_pedido = id_pedido
-            return redirect(url_for("cliente_Perfil", id = id))
-        return render_template("editar_pedido.html")
+            return redirect(url_for("cliente_Perfil", id=id_cliente))
+        id_pedido = id_pedido
+        pedido = pedidosDB.id_buscar(id_pedido)
+        return render_template("editar_pedido.html",  pedido=pedido)
     else:
         return redirect(url_for("/login_cliente"))
+    
+
+@app.route("/lista/historico")
+def listaHistorico():
+    if 'funcionario_nome' in session:
+        pedidos = pedidosDB.listar_Pedidos_Historico()
+        return render_template("lista_historico_quentinha.html", pedidos=pedidos)
+    else:
+        return redirect(url_for("login_Funcionario"))
+    
+
+@app.route("/cliente_Perfil/<int:id>/Historico")
+def clienteHistorico(id):
+    if 'nome_Cliente' in session:
+        id = id
+        pedidos = pedidosDB.pedidosDeClienteHistorico(id)
+        return render_template("historico_Cliente.html", id=id, pedidos=pedidos)
+    else:
+        return redirect(url_for("/login_cliente"))
+
 
 if __name__ == "__main__":
     app.run(debug=True)

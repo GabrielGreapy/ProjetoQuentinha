@@ -5,7 +5,14 @@
 {% block subtitle %}{% endblock %}
 
 {% block content %}
-
+    <div class="container">
+                
+        <div class="lista-link">
+            <a href="/funcionario">
+                <button>Voltar</button>
+            </a>
+        </div>
+    </div>
     <div class="container">
         <div class="forms-div">
             <form action="" method="POST">
@@ -25,8 +32,9 @@
                     <label for="senha">Sua senha:</label>
                     <input type="password" name="senha">
                 </div>
+                <div class="item-form">
                     <input type="submit" class="botao" value="Criar">
-                
+                </div>
             </form>
         </div>
     </div>
