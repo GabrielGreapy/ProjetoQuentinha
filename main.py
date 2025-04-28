@@ -192,15 +192,19 @@ def cardapio():
 def carnes():
     if 'funcionario_nome' in session:
         if request.method == "POST":
-            
-            carne = int(request.form.get("carne", "")).strip()
-            if carne is None:
+            try:
+                carne = int(request.form.get("carne", "").strip())
+            except (ValueError, AttributeError):
                 carne = 0
-            linguica = int(request.form.get("linguica", "")).strip()
-            if linguica is None:
+
+            try:
+                linguica = int(request.form.get("linguica", "").strip())
+            except (ValueError, AttributeError):
                 linguica = 0
-            frango = int(request.form.get("frango", "")).strip()
-            if frango is None:
+
+            try:
+                frango = int(request.form.get("frango", "").strip())
+            except (ValueError, AttributeError):
                 frango = 0
             carnesDB.modificar_Estoque(carne, linguica, frango)
         mantimentos = carnesDB.info_Estoque()
