@@ -8,31 +8,18 @@
 
 
     <div class="container">
-
-            <div class="container-contas">
-                <ul>
-                    <li>
-                        <div class="conta-individual">
-                            <div class="area-conta">
-                                {{ divida[1] }}
-                            </div>
-                            <div class="area-conta">
-                                {{ divida[2] }}
-                            </div>
-                            <div class="area-conta">
-                                {{ divida[3] }}
-                            </div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="conta-individual">
-                            <div class="area-conta">
-                                {{ divida[0] }}
-                            </div>
-                        </div>
-                    </li>
-                </ul>
+        <div class="divida-info-div">
+            <div class="divida-info">
+                Id da divida: {{ divida["id_Divida"] }}
             </div>
+            <div class="divida-info">
+                Id do Devedor: {{ divida["id_Devedor"] }}
+            </div>
+            <div class="divida-info">
+                Valor da divida: R${{ divida["valor"] }}
+            </div>
+        </div>
+
     </div>
     
         

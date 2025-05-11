@@ -235,14 +235,14 @@ def historico_Dividas():
 
 
 
-@app.route("/adicionar_Conta", methods=("POST", "GET"))
-def adicionar_Conta():
+@app.route("/adicionar_devedor", methods=("POST", "GET"))
+def adicionar_devedor():
     if 'funcionario_nome' in session:
         if request.method == "POST":
             nome = request.form.get("devedor", "").strip()
             if nome:
                 dividasDB.inserir_Devedor(nome)
-        return render_template("adicionar_Conta.html")
+        return render_template("adicionar_devedor.html")
     else: 
         return redirect(url_for("login_Funcionario"))    
 
@@ -260,14 +260,20 @@ def lista_Devedores():
 def devedor(id):
         if 'funcionario_nome' in session:
             dividas_Do_Devedor = dividasDB.pegar_Dividas(id)
-            total = 0
-            for divida in dividas_Do_Devedor:
-                conta = divida[3]
-                if "," in conta:
-                    conta_nova = conta.replace( "," , ".")
-                    conta = float(conta_nova)
-                total += conta
+            if dividas_Do_Devedor :
+                total = 0
+                for divida in dividas_Do_Devedor:
+                    conta = divida[3]
+                    if isinstance(conta, str) and "," in conta:
+                        conta_nova = conta.replace( "," , ".")
+                        conta = float(conta_nova)
+                    total += conta
+                    return render_template("devedor.html", dividas=dividas_Do_Devedor, id=id, total=total)
+            else:
+                return redirect(url_for("adicionar_divida", id=id))
+            
             return render_template("devedor.html", dividas=dividas_Do_Devedor, id=id, total=total)
+            
         else: 
             return redirect(url_for("login_Funcionario"))  
 
@@ -367,7 +373,7 @@ def editarPedido(id_cliente, id_pedido):
         pedido = pedidosDB.id_buscar(id_pedido)
         return render_template("editar_pedido.html",  pedido=pedido)
     else:
-        return redirect(url_for("/login_cliente"))
+        return redirect(url_for("login_cliente"))
     
 
 @app.route("/lista/historico")
@@ -386,7 +392,24 @@ def clienteHistorico(id):
         pedidos = pedidosDB.pedidosDeClienteHistorico(id)
         return render_template("historico_Cliente.html", id=id, pedidos=pedidos)
     else:
-        return redirect(url_for("/login_cliente"))
+        return redirect(url_for("login_cliente"))
+
+@app.route("/devedores/<int:id>/adicionar_divida", methods=("POST", "GET"))
+def adicionar_divida(id):
+    if 'funcionario_nome' in session:
+        id = id
+        if request.method == "POST":
+            valor = request.form.get("valor", "").strip()
+            if "," in valor:
+                valor_novo = valor.replace( "," , ".")
+                valor = float(valor_novo)
+            devedor = dividasDB.pegar_Devedor(id)
+            nome = devedor["nome_Cliente"]
+            dividasDB.inserir_Divida(id, nome, valor)
+            return redirect(url_for("devedor", id=id))
+        return render_template("adicionar_divida.html")
+    else:
+        return redirect(url_for("login_Funcionario"))
 
 
 if __name__ == "__main__":

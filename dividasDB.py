@@ -7,7 +7,8 @@ def criando_Tabela_Devedores():
     cursor.execute('''
                 CREATE TABLE IF NOT EXISTS devedores(
                    id INTEGER PRIMARY KEY AUTOINCREMENT,
-                   nome_Cliente TEXT NOT NULL
+                   nome_Cliente TEXT NOT NULL,
+                   total FLOAT NOT NULL
                 )
                 ''')
     conn.commit()
@@ -18,9 +19,9 @@ def inserir_Devedor(nome_Cliente):
     conn = sqlite.connect('dividasDB.sqlite')
     cursor = conn.cursor()
     cursor.execute('''
-                   INSERT INTO devedores(nome_Cliente)
-                   VALUES( ?)
-                   ''',(nome_Cliente,)
+                   INSERT INTO devedores(nome_Cliente, total)
+                   VALUES( ?, ?)
+                   ''',(nome_Cliente, 0)
                     )
     conn.commit()
     conn.close()
@@ -91,7 +92,36 @@ def inserir_Divida(id, nome_Cliente, valor):
                    INSERT INTO dividas( nome_Cliente, id_Devedor, valor)
                    VALUES ( ?, ?, ?)
 
-                   ''', ( id, nome_Cliente, valor))
+                   ''', ( nome_Cliente, id, valor))
+    conn.commit()
+    conn.close()
+
+def aumentar_divida(id, valor_a_aumentar, valor_total):
+    valor_total += valor_a_aumentar 
+    conn = sqlite.connect('dividasDB.sqlite')
+    cursor = conn.cursor()
+    cursor.execute('''
+                   UPDATE dividas
+                   SET total = ?
+                   WHERE id_Devedor = ?
+                   VALUES ( ?, ?)
+
+                   ''', (valor_total, id))
+    conn.commit()
+    conn.close()
+
+
+def diminuir_divida(id, valor_a_aumentar, valor_total):
+    valor_total -= valor_a_aumentar 
+    conn = sqlite.connect('dividasDB.sqlite')
+    cursor = conn.cursor()
+    cursor.execute('''
+                   UPDATE dividas
+                   SET total = ?
+                   WHERE id_Devedor = ?
+                   VALUES ( ?, ?)
+
+                   ''', (valor_total, id))
     conn.commit()
     conn.close()
 
@@ -133,9 +163,9 @@ def pegar_Divida(id_divida):
     cursor.execute(
         '''SELECT * FROM dividas WHERE id_Divida = ?''', (id_divida,)
     )
-    dividas = cursor.fetchone() 
+    divida = cursor.fetchone() 
     conn.close()
-    return dividas if dividas else None
+    return divida if divida else None
 
 criando_Tabela_Dividas()
 criando_Tabela_Devedores()

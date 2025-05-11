@@ -87,6 +87,7 @@ footer {
     width: 100%;
     text-decoration: none;
     list-style: none;
+    margin-top: 10rem;
 }
 
 footer li {
@@ -116,6 +117,11 @@ select{
 
 .titulo {
     font-size: 15px;
+}
+.item{
+    width: 100%;
+    display: flex;
+    justify-content: center;
 }
 
 .side-bar {
@@ -213,7 +219,6 @@ select{
     width: 160px;
 
 }
-
 .text {
     height: 10vh;
     width: 50vw;
@@ -504,6 +509,10 @@ select{
     width: 90%;
     flex-flow: column;
     text-align: center;
+    
+}
+.item-carnes{
+    margin-top: 1.6rem;
 }
 .container-contas{
     width: 90%;
@@ -551,6 +560,15 @@ select{
     height: 40px;
     font-size: 15px;
     width: 160px;
+}
+.divida-info-div{
+    width: 90%;
+    display: flex;
+    flex-flow: column;
+
+}
+.divida-info{
+    
 }
 
 /* fonts */
