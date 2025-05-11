@@ -86,6 +86,10 @@ def criando_Tabela_Dividas():
 
 
 def inserir_Divida(id, nome_Cliente, valor):
+    devedor = pegar_Devedor(id)
+    total_antigo = devedor["total"]
+    valor_a_adicionar = valor
+    aumentar_divida(id, valor_a_adicionar, total_antigo)
     conn = sqlite.connect('dividasDB.sqlite')
     cursor = conn.cursor()
     cursor.execute('''
@@ -96,32 +100,40 @@ def inserir_Divida(id, nome_Cliente, valor):
     conn.commit()
     conn.close()
 
+
+
 def aumentar_divida(id, valor_a_aumentar, valor_total):
     valor_total += valor_a_aumentar 
     conn = sqlite.connect('dividasDB.sqlite')
     cursor = conn.cursor()
     cursor.execute('''
-                   UPDATE dividas
+                   UPDATE devedores
                    SET total = ?
-                   WHERE id_Devedor = ?
-                   VALUES ( ?, ?)
-
+                   WHERE id = ?
                    ''', (valor_total, id))
     conn.commit()
     conn.close()
 
 
-def diminuir_divida(id, valor_a_aumentar, valor_total):
-    valor_total -= valor_a_aumentar 
+def diminuir_divida(id, valor_a_diminuir, valor_total):
+    valor_total -= valor_a_diminuir
     conn = sqlite.connect('dividasDB.sqlite')
     cursor = conn.cursor()
     cursor.execute('''
-                   UPDATE dividas
+                   UPDATE devedores
                    SET total = ?
-                   WHERE id_Devedor = ?
-                   VALUES ( ?, ?)
-
+                   WHERE id = ?
                    ''', (valor_total, id))
+    conn.commit()
+    conn.close()
+
+
+def excluir_Divida(id_divida):
+    conn = sqlite.connect('dividasDB.sqlite')
+    cursor = conn.cursor()
+    cursor.execute('''
+        DELETE FROM dividas WHERE id_Divida = ?
+    ''', (id_divida,))
     conn.commit()
     conn.close()
 

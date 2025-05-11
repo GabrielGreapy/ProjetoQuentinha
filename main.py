@@ -260,19 +260,12 @@ def lista_Devedores():
 def devedor(id):
         if 'funcionario_nome' in session:
             dividas_Do_Devedor = dividasDB.pegar_Dividas(id)
+            devedor = dividasDB.pegar_Devedor(id)
             if dividas_Do_Devedor :
-                total = 0
-                for divida in dividas_Do_Devedor:
-                    conta = divida[3]
-                    if isinstance(conta, str) and "," in conta:
-                        conta_nova = conta.replace( "," , ".")
-                        conta = float(conta_nova)
-                    total += conta
-                    return render_template("devedor.html", dividas=dividas_Do_Devedor, id=id, total=total)
+                return render_template("devedor.html", dividas=dividas_Do_Devedor, id=id, devedor=devedor)
             else:
                 return redirect(url_for("adicionar_divida", id=id))
-            
-            return render_template("devedor.html", dividas=dividas_Do_Devedor, id=id, total=total)
+            return render_template("devedor.html", dividas=dividas_Do_Devedor, id=id)
             
         else: 
             return redirect(url_for("login_Funcionario"))  
@@ -285,8 +278,7 @@ def divida(id, id_divida):
         devedor = dividasDB.pegar_Devedor(id)
         id_divida = id_divida
         divida = dividasDB.pegar_Divida(id_divida)
-
-        return render_template("divida.html", divida=divida, devedor=devedor)
+        return render_template("divida.html", divida=divida, devedor=devedor, id=id)
     else: 
         return redirect(url_for("login_Funcionario"))  
 
@@ -403,6 +395,8 @@ def adicionar_divida(id):
             if "," in valor:
                 valor_novo = valor.replace( "," , ".")
                 valor = float(valor_novo)
+            else:
+                valor = float(valor)
             devedor = dividasDB.pegar_Devedor(id)
             nome = devedor["nome_Cliente"]
             dividasDB.inserir_Divida(id, nome, valor)
@@ -412,5 +406,18 @@ def adicionar_divida(id):
         return redirect(url_for("login_Funcionario"))
 
 
+
+@app.route("/devedores/<int:id>/perdoar_divida/<int:id_Divida>")
+def perdoar_divida(id, id_Divida):
+    if 'funcionario_nome' in session:
+        divida = dividasDB.pegar_Divida(id_Divida)
+        valor = divida['valor']
+        devedor = dividasDB.pegar_Devedor(id)
+        total = devedor["total"]
+        dividasDB.diminuir_divida(id, valor, total)
+        dividasDB.excluir_Divida(id_Divida)
+        return redirect(url_for("devedor", id=id))
+    else:
+        return redirect(url_for("login_Funcionario"))
 if __name__ == "__main__":
     app.run(debug=True)

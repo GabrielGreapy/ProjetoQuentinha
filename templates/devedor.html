@@ -33,17 +33,11 @@
                 <li>
                     <div class="conta-individual-nome">
                         <div class="area-conta-nome">
-                            Valor total
+                            Valor total: {{ devedor["total"] }} R$
                         </div>
                     </div>
                 </li>
-                <li>
-                    <div class="conta-individual-nome">
-                        <div class="area-conta-nome">
-                            {{ total }}
-                        </div>
-                    </div>
-                </li>
+
                 <li>
                     {% for divida in dividas %}
                         <a href="/devedores/{{ id }}/{{ divida[0] }}">

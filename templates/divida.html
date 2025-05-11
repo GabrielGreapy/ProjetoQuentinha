@@ -6,7 +6,13 @@
 
 {% block content %}
 
-
+    <div class="container">
+        <div class="lista-link">
+            <a href="/devedores/{{ id }}">
+                <button>Voltar</button>
+            </a>
+        </div>
+    </div>
     <div class="container">
         <div class="divida-info-div">
             <div class="divida-info">
@@ -19,7 +25,13 @@
                 Valor da divida: R${{ divida["valor"] }}
             </div>
         </div>
-
+    </div>
+    <div class="container">
+        <div class="lista-link">
+            <a href="/devedores/{{ id }}/perdoar_divida/{{ divida['id_Divida'] }}">
+                <button>Perdoar Divida</button>
+            </a>
+        </div>
     </div>
     
         
