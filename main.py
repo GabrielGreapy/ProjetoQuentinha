@@ -1,14 +1,16 @@
 from flask import *
+from dotenv import load_dotenv
+import os
 
-
-
+load_dotenv()
+app.config['SECRET_KEY'] = os.getenv('SECRET_KEY')
 app = Flask(__name__)
 import pedidosDB
 import administracaoDB
 import cardapioDB
 import carnesDB
 import dividasDB
-app.config['SECRET_KEY'] = 'bananadog'
+
 
 
 @app.route("/")
