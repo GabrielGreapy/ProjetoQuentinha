@@ -1,0 +1,691 @@
+html, body {
+    height: 100%;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+.page-wrapper {
+    flex: 1;
+}
+
+
+
+
+
+
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+    font-family: "Alte-Regular";
+}
+
+button {
+    height: 40px;
+    width: 200px;
+}
+
+:root {
+    --primary: #db0007;
+    
+    --light: #fff;
+    --dark: #00172d;
+    ---rgba: rgba(0, 0, 0, 0.2)
+}
+
+nav {
+    display: flex;
+    box-shadow: var(---rgba);
+    width: 90%;
+    align-items: center;
+    justify-content: space-evenly;
+
+}
+li{
+    list-style: none;
+}
+
+nav ul {
+    width: 100%;
+    list-style: none;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center
+}
+
+nav li {
+    height: 50px;
+    display: flex;
+    align-items: center;
+
+
+}
+
+nav a {
+    height: 100%;
+    padding: 0 30px;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    color: black;
+}
+
+nav li:first-child {
+    margin-right: auto;
+
+}
+
+footer {
+    display: flex;
+    justify-content: center;
+    background-color: #f0f0f0;
+    width: 100%;
+    text-decoration: none;
+    list-style: none;
+    margin-top: 10rem;
+}
+
+footer li {
+    width: 100%;
+    height: 30px;
+    margin: 15px 0 15px;
+    text-align: center;
+    text-decoration: none;
+    list-style: none;
+}
+
+footer a {
+    position: relative;
+    text-decoration: none;
+    color: var(--dark);
+    transition: color 0.3s ease;
+}
+
+footer a::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 50%;
+    width: 0%;
+    height: 2px;
+    background-color: var(--dark);
+    transition: width 0.3s ease, left 0.3s ease;
+}
+
+footer a:hover {
+    color: var(--dark);
+}
+
+footer a:hover::after {
+    width: 60%;
+    left: 20%;
+}
+
+select{
+    width: 70vw;
+    appearance: none;
+    font: inherit;
+    padding: 1rem;
+    border: none;
+    border-radius: 1rem;
+    line-height: 1.6rem;
+    margin: 1rem 0 1rem;
+}
+
+.titulo {
+    font-size: 15px;
+}
+.item{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.side-bar {
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 100vh;
+    width: 250px;
+    z-index: 1111;
+    background-color: #f0f0f0;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    transform: translateX(100%);
+    opacity: 0;
+    box-shadow: -4px 0 20px rgba(0, 0, 0, 0.2);
+    transition: transform 0.5s ease, opacity 0.5s ease;
+}
+
+.side-bar.ativa {
+    transform: translateX(0);
+    opacity: 1;
+}
+.side-bar a {
+    position: relative;
+    padding: 1rem;
+    text-decoration: none;
+    color: var(--dark);
+    transition: color 0.3s ease;
+}
+
+.side-bar a::after {
+    content: '';
+    position: absolute;
+    bottom: 0.8rem;
+    left: 1rem;
+    width: 0%;
+    height: 2px;
+    background-color: var(--dark);
+    transition: width 0.3s ease;
+}
+
+.side-bar a:hover {
+    
+    color: var(--dark);
+}
+
+.side-bar a:hover::after {
+    width: 60%;
+}
+
+
+.side-bar ul {
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+}
+
+.side-bar li,
+.side-bar a {
+    width: 100%;
+}
+
+.side-bar li:first-child {
+    margin-top: 28px;
+    margin-right: 30px;
+    
+    display: flex;
+    justify-content: flex-end;
+    width: 93%;
+
+
+
+}
+.contatos {
+    width: 90%;
+    height: 400px;
+    padding: 2rem;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+    font-weight: bold;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.contatos h2 {
+    margin-bottom: 1rem;
+    color: var(--light);
+}
+
+.contatos p {
+    color: var(--light);
+    margin: 0.5rem 0;
+    font-size: 1rem;
+}
+
+.contatos a {
+    color: var(--light);
+    text-decoration: none;
+}
+
+.contatos a:hover {
+    text-decoration: underline;
+}
+
+
+
+
+
+
+.container {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin: 1.6rem 0rem 1.6rem 0rem;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 90vw;
+
+}
+
+.borda {
+    border: 2px red solid;
+}
+
+.welcome {
+    display: flex;
+    height: 100px;
+    width: 90%;
+    margin-top: 1.6rem;
+    flex-flow: column;
+    align-items: center;
+    justify-content: center;
+
+
+}
+
+.pedir {
+    display: flex;
+    justify-content: center;
+    height: 50px;
+    width: 50vw;
+    margin: 10px;
+}
+
+.pedir button {
+    background-color: #fdea08;
+    border-radius: 5%;
+    height: 40px;
+    font-size: 15px;
+    width: 160px;
+
+}
+.text {
+    font-weight: bolder;
+    height: 3rem;
+    width: 100%;
+    margin: 40px;
+
+ 
+}
+
+.cempx {
+    width: 200px;
+    height: 100px;
+}
+
+.pedido {
+    width: 90vw;
+    display: flex;
+    box-shadow: 2px 2px 10px var(---rgba);
+    align-items: center;
+    justify-content: center;
+    align-items: center;
+    flex-flow: row;
+}
+.pedido-seccao{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 90%;
+    padding: 10px 20px;
+    
+}
+.sobre-projeto {
+    width: 90%;
+    margin-top: 12rem;
+    padding: 1.6rem;
+    color: var(--light);
+    background-color: #90a144;
+    box-shadow: 2px 2px 10px rgba(0,0,0,0.1);
+    border-radius: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    font-weight: 11000;
+}
+.violeta{
+    background-color: #69022d;
+}
+.sobre-projeto h2 {
+    font-size: 1.8rem;
+    margin-bottom: 0.5rem;
+    text-align: center;
+}
+
+.sobre-projeto p {
+    font-size: 1.1rem;
+    color: var(--light);
+    text-align: left;
+}
+
+
+
+.botao-solicitar {
+    background-color: #fdea08;
+    padding: 8px;
+    width: 100%;
+    height: 50px;
+    border-radius: 2%;
+}
+
+.input {
+    padding: 8px 0 8px;
+}
+
+#obs {
+    width: 100%;
+    height: 100px;
+}
+
+.pedido-detalhes {
+    padding: 5px 0 5px;
+}
+
+.pedido-container {
+    display: flex;
+    width: 90%;
+    flex-flow: column;
+    align-items: center;
+    box-shadow: 2px 2px 10px var(---rgba);
+}
+
+.quentinha {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 90%;
+}
+
+.quentinha-vazia {
+    height: 200px;
+}
+
+#coluna {
+    flex-flow: column;
+}
+
+.ingrediente {
+    position: absolute;
+}
+
+.feijao {
+    height: 170px;
+
+}
+
+.arroz {
+    height: 135px;
+}
+
+.macarrao {
+    height: 170px;
+}
+
+.verduras {
+    height: 90px;
+    margin-left: 90px;
+}
+
+.frango {
+    height: 200px;
+    margin-bottom: 110px;
+}
+
+.carne {
+    height: 80px;
+    margin-right: 70px;
+}
+
+.linguica {
+    height: 180px;
+}
+
+.login {
+    display: flex;
+    justify-content: center;
+    height: 50px;
+    width: 50vw;
+    margin: 10px;
+}
+
+.login button {
+    background-color: #086209;
+    color: #fff;
+    border-radius: 5%;
+    height: 40px;
+    font-size: 15px;
+    width: 160px;
+}
+
+.loginform {
+    display: flex;
+    width: 90vw;
+    flex-flow: column;
+    height: 100px;
+
+}
+
+.svg {
+    fill: black;
+    width: 35px;
+
+}
+
+.forms-div {
+    display: flex;
+    height: 80vh;
+    align-items: center;
+
+
+}
+
+.item-form {
+    display: flex;
+    flex-flow: column;
+    margin: 20px;
+    align-items: center;
+}
+
+.submit {
+    height: 30px;
+    width: 120px;
+}
+
+.lista-link {
+    display: flex;
+    flex-flow: column;
+    margin: 40px;
+    gap: 30px;
+}
+
+.papel-div {
+    display: flex;
+    width: 90%;
+    align-items: center;
+}
+.papel-div span {
+    width: 18ch;
+    white-space: nowrap;    
+    overflow: hidden;       
+    text-overflow: ellipsis;
+    color: black;
+    text-decoration: none;
+
+}
+
+.papel {
+
+    width: 90%;
+    height: 200px;
+    z-index: 1;
+}
+
+.pedido-id {
+    position: absolute;
+    padding: 0 40px 100px;
+    z-index: 2;
+}
+
+.pedido-nome {
+    position: absolute;
+    padding: 0 40px 60px;
+    z-index: 2;
+}
+.containerCliente-Perfil{
+    display: flex;
+    width: 90vw;
+    flex-flow: column;
+    gap: 2rem;
+}
+.perfilCliente {
+    display: flex;
+    flex-flow: column;
+    width: 90%;
+}
+.quentinhasPedidasLista{
+    display: flex;
+    flex-flow: column;
+    width: 90%;
+    gap: 2rem;
+}
+.quentinhasPedidasUnidade{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 2px 2px 10px var(---rgba);
+    flex-flow: column;
+    padding: 0px 0px 1rem;
+    gap: 5px;
+}
+.quentinhasPedidasUnidade div{
+    display: flex;
+    align-items: center;
+    height: 2rem;
+    justify-content: space-around;
+    width: 100%;   
+}
+.quentinhasPedidasUnidade button{
+    height: 2rem;
+    width: 40%;
+
+}
+.quentinhasPedidasUnidade button{
+    border-radius: 7%;
+    height: 40px;
+    font-size: 15px;
+    width: 100px;
+}
+.funcoes {
+    display: flex;
+    flex-flow: column;
+    width: 90%;
+}
+
+.containerCliente {
+    display: flex;
+    height: 80vh;
+    flex-flow: column;
+    align-items: center;
+}
+
+.b100 {
+    width: 100%;
+}
+
+.pedido-infoEntrega {
+    position: absolute;
+    padding: 0 40px 20px;
+    z-index: 2;
+}
+
+.coluna_lista {
+    display: flex;
+    width: 90%;
+    justify-content: center;
+}
+
+.div-cardapio {
+    display: flex;
+    width: 90%;
+    height: 80vh;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 2px 2px 10px var(---rgba);
+
+}
+
+.div-carnes {
+    display: flex;
+    width: 90%;
+    flex-flow: column;
+    text-align: center;
+    
+}
+.item-carnes{
+    margin-top: 1.6rem;
+}
+.container-contas{
+    width: 90%;
+    height: 100vh;
+    border: solid 1px #727988;
+}
+.conta-individual{
+    display: grid;
+    grid-template-columns: 40% 40% 20%;
+    width: 100%;
+    height: 50px;
+    border-bottom: #727988 1px solid;
+}   
+.area-conta{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-right: #727988 1px solid;
+}
+.conta-individual-nome{
+    width: 100%;
+    height: 50px;
+    border-bottom: #727988 1px solid;
+}
+.area-conta-nome{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-right: #727988 1px solid;
+}
+.verde{
+    background-color: #1ea362;
+    color: #fff;
+}
+.vermelho{
+    background-color: #db0007;
+    color: #fff;
+}
+.obs{
+    height: 300px;
+    width: 100%;
+}
+.botao{
+    border-radius: 5%;
+    height: 40px;
+    font-size: 15px;
+    width: 160px;
+}
+.divida-info-div{
+    width: 90%;
+    display: flex;
+    flex-flow: column;
+
+}
+.divida-info{
+    
+}
+
+/* fonts */
+@font-face {
+    font-family: "Alte-Regular";
+    src: url(/static/fonts/AlteHaasGroteskRegular.ttf);
+}

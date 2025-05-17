@@ -1,0 +1,64 @@
+{% extends "home.html" %}
+
+{% block title %}Projeto Quentinhas{% endblock %}
+
+{% block subtitle %}{% endblock %}
+
+{% block content %}
+
+    <div class="container">
+        <div class="lista-link">
+            <a href="/funcionario">
+                <button>Voltar</button>
+            </a>
+            <a href="/adicionar_devedor">
+                <button>Adicionar devedor</button>
+            </a>
+            <a href="/lista_Devedores">
+                <button>Lista organizada por nome</button>
+            </a>
+            
+        </div>
+    </div>
+    <div class="container">
+        <div class="container-contas">
+            <ul>
+                <li>
+                    <div class="conta-individual">
+                        <div class="area-conta">
+                            Nome do cliente
+                        </div>
+                        <div class="area-conta">
+                            Id
+                        </div>
+                        <div class="area-conta">
+                            Valor
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    {% for divida in dividas %}
+                        
+                        <a href="/devedores/{{ divida[2] }}/{{ divida[0] }}">
+                            <div class="conta-individual">
+                                <div class="area-conta">
+                                    {{ divida[1] }}
+                                </div>
+                                <div class="area-conta">
+                                    {{ divida[2] }}
+                                </div>
+                                <div class="area-conta">
+                                    {{ divida[3] }}
+                                </div>
+                            </div>
+                        </a>
+                    {% endfor %}
+                </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+
+{% endblock %}

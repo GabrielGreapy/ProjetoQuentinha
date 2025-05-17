@@ -1,0 +1,44 @@
+{% extends "home.html" %}
+
+{% block title %}Lista de Pedidos{% endblock %}
+
+{% block subtitle %}{% endblock %}
+
+{% block content %}
+    <div class="container">
+            
+        <div class="lista-link">
+            <a href="/funcionario">
+                <button>Voltar</button>
+            </a>
+            <a href="/lista/historico">
+                <button>Historico de quentinhas</button>
+            </a>
+
+
+        </div>
+    </div>
+    <div class="container">   
+        <h3 class="text-center">Lista de Pedidos</h3>
+    </div>
+    
+
+                {% for pedido in pedidos %}    
+                    <div class="container">
+                        <div class="coluna_lista">
+                            <a href="/lista/{{ pedido[0] }}">
+                                <div class="papel-div">
+                                    <img src="/static/papel.png" class="papel" alt="papel">
+                                        <span class="pedido-id">#{{ pedido[1] }}</span>
+                                        <span class="pedido-nome">{{ pedido[2] }}</span>
+                                        <span class="pedido-infoEntrega">{{ pedido[13] }}</span>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                {% endfor %}
+            
+    </div>
+
+{% endblock %}

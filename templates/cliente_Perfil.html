@@ -1,0 +1,58 @@
+{% extends "home.html" %}
+
+{% block title %}Projeto Quentinhas{% endblock %}
+
+{% block subtitle %}{% endblock %}
+
+{% block content %}
+
+    <div class="container">
+        <div class="containerCliente-Perfil">
+            <div class="seccaoPerfil">
+                <h3>Olá {{ nome }}</h3>
+                <h4>Bem vindo ao Delicias da Silvania, como posso lhe ajudar hoje?</h4>
+            </div>
+            <div class="funcoes">
+                <a href="/pedindo">
+                    <button class="b100">Pedir Quentinhas</button>
+                </a>
+            </div>
+            <div class="funcoes">
+                <a href="/cliente_Perfil/{{ id }}/Historico">
+                    <button class="b100">Historico de Quentinha</button>
+                </a>
+            </div>
+            <div class="quentinhasPedidasLista">
+                <div class="quentinhasPedidasUnidade">
+                    <h5>Historico</h5>
+                </div>
+                {% for pedido in pedidos %}
+                    <div class="quentinhasPedidasUnidade">
+                        <div>
+                            1x Quentinha de {{pedido['tipo_Feijao']}}
+                        </div>
+                        <div>
+                            Preço:{{pedido['preco']}} R$  
+
+                            
+                        </div>
+                        <div>
+                            Pagamento:{{pedido['forma_Pagamento']}}, {{pedido['status_Pedido']}}
+                        </div>
+                        <div>
+                            <a  href="/cliente_Perfil/{{pedido['id_Cliente']}}/{{pedido['id']}}/cancelar">
+                                <button class="vermelho">Cancelar</button>
+                            </a>
+                            
+                            <a href="/cliente_Perfil/{{pedido['id_Cliente']}}/{{pedido['id']}}/editar">
+                                <button>Editar</button>
+                            </a>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}

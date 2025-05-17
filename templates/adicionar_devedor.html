@@ -1,0 +1,30 @@
+{% extends "home.html" %}
+
+{% block title %}Projeto Quentinhas{% endblock %}
+
+{% block subtitle %}{% endblock %}
+
+{% block content %}
+
+    <div class="container">
+        <div class="item">
+            <a href="/funcionario">
+                <button>Voltar</button>
+            </a>
+        </div>
+    </div>
+    <div class="container">
+            <form method="POST">
+                <div class="item-form">
+                    <label for="text">Nome do Devedor</label>
+                    <input type="text" name="devedor">
+                </div>
+                <div class="item-form">
+                    <input type="submit" class="submit" value="Adicionar conta" name="">
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+{% endblock %}

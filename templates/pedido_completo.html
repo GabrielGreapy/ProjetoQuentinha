@@ -1,0 +1,93 @@
+{% extends "home.html" %}
+
+{% block title %}Projeto Quentinhas{% endblock %}
+
+{% block subtitle %}Seja Bem-Vindo/{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="pedido-container">
+            <h3>Detalhes do Pedido #{{ pedido[0] }}</h3>
+            <div class="pedido-detalhes"><span class="pedido-detalhes">Id do pedido:</span> {{ pedido[0] }}</div>
+            <div class="pedido-detalhes"><span class="pedido-detalhes">Id do cliente:</span> {{ pedido[1] }}</div>
+            <div class="pedido-detalhes"><span class="pedido-detalhes">Cliente:</span> {{ pedido[2] }}</div>
+            <div class="pedido-detalhes"><span class="pedido-detalhes">Feijão:</span> {{ pedido[3] }}</div>
+            <div class="pedido-detalhes"><span class="pedido-detalhes">Arroz:</span> {{ pedido[4] }}</div>
+            <div class="pedido-detalhes"><span class="pedido-detalhes">Macarrão:</span> {{ pedido[5] }}</div>
+            <div class="pedido-detalhes"><span class="pedido-detalhes">Verduras:</span> {{ pedido[6] }}</div>
+            <div class="pedido-detalhes"><span class="pedido-detalhes">Frango:</span> {{ pedido[7] }}</div>
+            <div class="pedido-detalhes"><span class="pedido-detalhes">Carne:</span> {{ pedido[8] }}</div>
+            <div class="pedido-detalhes"><span class="pedido-detalhes">Linguiça:</span> {{ pedido[9] }}</div>
+            <div class="pedido-detalhes"><span class="pedido-detalhes">Observações:</span> {{ pedido[10] }}</div>
+            <div class="pedido-detalhes"><span class="pedido-detalhes">Preço:</span> R$ {{ pedido[11] }}</div>
+            
+            <div class="pedido-detalhes"><span class="pedido-detalhes">Horario de entrega:</span>{{ pedido[12] }}</div>
+
+            <div class="pedido-detalhes"><span class="pedido-detalhes">Local de entrega:</span> {{ pedido[13] }}</div>
+            <div class="pedido-detalhes"><span class="pedido-detalhes">Horario que foi pedido:</span> {{ pedido[14] }}</div>
+
+            <div class="pedido-detalhes"><span class="pedido-detalhes">Estado do pedido:</span> {{ pedido[15] }}</div>
+
+            <div class="pedido-detalhes"><span class="pedido-detalhes">Forma de pagamento:</span> {{ pedido[16] }}</div>
+        </div>
+    </div>
+    <div class="container">
+         <div class="container-quentinha">
+            <div class="quentinha">
+                <img src="/static/marmita_vazia.png" alt="quentinha_vazia" class="quentinha-vazia">
+                {% if pedido[3] == "feijaoPreto" %}
+                    <img src="/static/feijao_preto.png" alt="Feijao_Preto" class="ingrediente feijao" id="preto">
+                {% endif %}
+                
+                {% if pedido[3] == "feijaoMacassar" %}
+                    <img src="/static/feijão_macassar.png" alt="Feijao_Macassar" class="ingrediente feijao" id="macassar">
+                {% endif %}
+                {% if pedido[3] == "feijaoCarioca" %}
+                    <img src="/static/feijao_carioca.png" alt="Feijao_Carioca" class="ingrediente feijao" id="carioca">
+                {% endif %}
+                
+                {% if pedido[4] == "arrozSolto" %}
+                    <img src="/static/Arroz_Solto.png" alt="Arroz_Solto" class="ingrediente arroz">
+                {% endif %}
+                {% if pedido[4] == "arrozLeite" %}
+                    <img src="/static/arroz_Leite.png" alt="Arroz_Leite" class="ingrediente arroz">
+                {% endif %}
+                
+                {% if pedido[5] == "sim" %}
+                    <img src="/static/macarrao.png" alt="macarrao" class="ingrediente macarrao">
+                {% endif %}
+                
+                {% if pedido[6] == "sim" %}
+                    <img src="/static/verduras.png" alt="Verduras" class="ingrediente verduras">
+                {% endif %}
+                
+                {% if pedido[7] == "sim" %}
+                    <img src="/static/frango.png" alt="Frango" class="ingrediente frango">
+                {% endif %}
+                
+                {% if pedido[8] == "sim" %}
+                    <img src="/static/carne.png" alt="Carne" class="ingrediente carne">
+                {% endif %}
+                {% if pedido[9] == "sim" %}
+                    <img src="/static/linguica.png" alt="Linguica" class="ingrediente linguica">
+                {% endif %} 
+            </div>     
+        </div>
+    
+    </div>
+    <div class="container">
+        <div class="lista-link">
+            <ul>
+                <li>
+                    <a href="/lista/{{pedido [0]}}/entregue"><button class="verde">Pedido Entregue</button></a>
+                </li>
+                <li>
+                    <a href="/lista/{{pedido [0]}}/retirar"><button class="vermelho">Excluir pedido</button></a>
+                </li>
+
+            </ul>
+        </div>
+    </div>
+
+
+{% endblock %}

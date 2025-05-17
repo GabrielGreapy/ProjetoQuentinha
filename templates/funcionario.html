@@ -1,0 +1,32 @@
+{% extends "home.html" %}
+
+{% block title %}Projeto Quentinhas{% endblock %}
+
+{% block subtitle %}{% endblock %}
+
+{% block content %}
+
+    <div class="container">
+        <h3>Bem vindo(a) {{ nome }}</h3>
+    </div>
+    <div class="container">
+        <div class="lista-link">
+            <a href="/lista">
+                <button>Lista de pedidos</button>
+            </a>
+            <a href="/criar_Funcionario">
+                <button>Novo Funcionario</button>
+            </a>
+            <a href="/inserir_Cardapio">
+                <button>Cárdapio</button>
+            </a>
+            <a href="/carnes">
+                <button>Estoque de carne</button>
+            </a>
+            <a href="/historico_Dividas">
+                <button>Papeis de contas</button>
+            </a>
+        </div>
+    </div>
+
+{% endblock %}
