@@ -5,23 +5,25 @@
 {% block subtitle %}{% endblock %}
 
 {% block content %}
-
+    <div class="container">
+        <div class="text">
+            <h4>Por favor coloque seu e-mail e senha registrado no nosso sistema:</h4>
+        </div>
+    </div>
     <div class="container">
         <div class="forms-div">
             <form method="POST">
                 <div class="item-form">
-                    <label for="email">E-mail</label>
-                    <input type="email" name="email">
+                    <input type="email" name="email" placeholder="Informe seu e-mail cadastrado">
                 </div>
                 <div class="item-form">
-                    <label for="senha">Senha</label>
-                    <input type="password" name="senha" id="">
+                    <input type="password" name="senha" placeholder="Informe sua senha cadastrada" id="">
                 </div>
                 <div class="item-form">
-                    <input type="submit" class="submit" value="Login" name="">
+                    <input type="submit" class="submit amarelo" value="Continuar" name="">
                 </div>
                 <div class="item-form">
-                    <a href="/criar_Cliente">Não tem uma conta?</a>
+                    <a href="/criar_Cliente">Não tem uma conta? Registre-se</a>
                 </div>
             </form>
             

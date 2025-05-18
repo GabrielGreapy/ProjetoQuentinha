@@ -35,23 +35,23 @@
                 </div>
                 <div class="pedindo-seccao">
                     <h4>Opcionais:</h4>
-                    <div class="input"><input type="checkbox" name="opcionais" value="Macarrão"{% if pedido[5] == "Sim" %}checked{% endif %}> Macarrão</div>
-                    <div class="input">
+                    <div class="input-pedido"><input type="checkbox" name="opcionais" value="Macarrão"{% if pedido[5] == "Sim" %}checked{% endif %}> Macarrão</div>
+                    <div class="input-pedido">
                         <input type="checkbox" name="opcionais" value="Verduras" {% if pedido[6] == "Sim" %}checked{% endif %}> Verduras
                     </div>
                     
                 </div>
                 <h4>Carnes:</h4>
                 
-                <div class="input"><input type="checkbox" name="carnes" value="Frango"{% if pedido[7] == "Sim" %}checked{% endif %}> Frango</div>
-                <div class="input"><input type="checkbox" name="carnes" value="Carne" {% if pedido[8] == "Sim" %}checked{% endif %}> Carne</div>
-                <div class="input"><input type="checkbox" name="carnes" value="Linguiça" {% if pedido[9] == "Sim" %}checked{% endif %}> Linguiça</div>
+                <div class="input-pedido"><input type="checkbox" name="carnes" value="Frango"{% if pedido[7] == "Sim" %}checked{% endif %}> Frango</div>
+                <div class="input-pedido"><input type="checkbox" name="carnes" value="Carne" {% if pedido[8] == "Sim" %}checked{% endif %}> Carne</div>
+                <div class="input-pedido"><input type="checkbox" name="carnes" value="Linguiça" {% if pedido[9] == "Sim" %}checked{% endif %}> Linguiça</div>
                     
-                <div class="input"><label for="local_Entrega">Local de entrega(Não preencha e concluiremos que você irá pegar no estabelecimento)</label></div>
-                <div class="input"><input type="text" name="local_Entrega" value="{{pedido[13]}}"></input></div>
+                <div class="input-pedido"><label for="local_Entrega">Local de entrega(Não preencha e concluiremos que você irá pegar no estabelecimento)</label></div>
+                <div class="input-pedido"><input type="text" name="local_Entrega" value="{{pedido[13]}}"></input></div>
                 
-                <div class="input"><label for="horario_Entrega">Horario de entrega</label></div>
-                <div class="input"><input type="time" name="horario_Entrega" value="{{pedido[12]}}"></input>
+                <div class="input-pedido"><label for="horario_Entrega">Horario de entrega</label></div>
+                <div class="input-pedido"><input type="time" name="horario_Entrega" value="{{pedido[12]}}"></input>
 
                 <div class="pedindo-seccao">
                     <label for="Observações">Observações</label>
