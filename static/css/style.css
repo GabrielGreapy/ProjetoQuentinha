@@ -281,7 +281,7 @@ select{
 .contatos {
     display: flex;
     flex-flow: column;
-    width: 100%;
+    width: 90vw;
     padding: 2rem;
     font-weight: bold;
     border-radius: 10px;
@@ -831,6 +831,7 @@ select{
     font-size: 20px;
     color: #b30000;
     cursor: pointer;
+    transition: none;
 }
 @keyframes fadeIn {
     from {

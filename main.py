@@ -205,8 +205,11 @@ def criar_Funcionario():
             except:
                 mensagem.append("Algo deu errado com a senha")
             try:
-                administracaoDB.inserir_Funcionario(nome, email, senha)
-                return redirect(url_for("funcionario"))
+                if nome and email and senha:
+                    administracaoDB.inserir_Funcionario(nome, email, senha)
+                    return redirect(url_for("funcionario"))
+                else:
+                    mensagem.append("Algo deu errado ao tentar criar um funcionário")
             except:
                 mensagem.append("Algo deu errado ao tentar inserir o funcionário")
         return render_template("criar_Funcionario.html")
