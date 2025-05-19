@@ -160,13 +160,32 @@ def cliente_Perfil(id):
 
 @app.route("/criar_Cliente", methods=( "POST", "GET"))
 def criar_Cliente():
+    mensagem = []
     if request.method == "POST":
-        email = request.form.get("email", "").strip()
-        nome = request.form.get("nome", "").strip()
-        numero = request.form.get("numero", "").strip()
-        senha = request.form.get("senha", "").strip()
-        administracaoDB.inserir_Cliente( email, nome, numero, senha)
-        return redirect(url_for("login_cliente"))    
+        try:
+            email = request.form.get("email", "").strip()
+        except:
+            mensagem.append('Algo deu errado no email')
+        try:
+            nome = request.form.get("nome", "").strip()
+        except:
+            mensagem.append('Algo deu errado no nome')
+        try:
+            numero = request.form.get("numero", "").strip()
+        except:
+            mensagem.append('Algo deu errado no numero')
+        try:
+            senha = request.form.get("senha", "").strip()
+        except:
+            mensagem.append("Algo deu errado na senha")
+        try:
+            if nome and numero and senha and email:
+                administracaoDB.inserir_Cliente( email, nome, numero, senha)
+                return redirect(url_for("login_cliente"))
+            else:
+                mensagem.append("Alguns dos campos está faltando")
+        except:
+            mensagem.append("Algo deu errado na criação de cliente.")
     return render_template("criar_Cliente.html")
 
 @app.route("/criar_Funcionario", methods=('POST', 'GET'))
