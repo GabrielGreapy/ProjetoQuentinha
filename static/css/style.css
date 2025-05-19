@@ -191,7 +191,11 @@ select{
     margin: 1rem 0 1rem;
     background-color: #fff04d;
 }
-
+.logo{
+    height: 5.5rem;
+    width: 6.9rem;
+    padding-bottom: 1rem;
+}
 .titulo {
     font-size: 15px;
 }

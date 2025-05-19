@@ -190,11 +190,25 @@ def criar_Cliente():
 @app.route("/criar_Funcionario", methods=('POST', 'GET'))
 def criar_Funcionario():
     if 'funcionario_nome' in session:
+        mensagem = []
         if request.method == "POST":
-            email = request.form.get("email", "").strip()
-            nome = request.form.get("nome", "").strip()
-            senha = request.form.get("senha", "").strip()
-            administracaoDB.inserir_Funcionario(nome, email, senha)
+            try:
+                email = request.form.get("email", "").strip()
+            except:
+                mensagem.append("Algo deu errado no email")
+            try:
+                nome = request.form.get("nome", "").strip()
+            except:
+                mensagem.append("Algo deu errado com o nome")
+            try:
+                senha = request.form.get("senha", "").strip()
+            except:
+                mensagem.append("Algo deu errado com a senha")
+            try:
+                administracaoDB.inserir_Funcionario(nome, email, senha)
+                return redirect(url_for("funcionario"))
+            except:
+                mensagem.append("Algo deu errado ao tentar inserir o funcionário")
         return render_template("criar_Funcionario.html")
     else: return redirect(url_for("login_Funcionario"))
 
