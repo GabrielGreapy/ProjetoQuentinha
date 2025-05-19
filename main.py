@@ -25,11 +25,11 @@ def pedindo():
         try:
             nome_Cliente = session['nome_Cliente']
         except:
-            mensagem.append = "Algo deu errado no nome do cliente"
+            mensagem.append("Algo deu errado no nome do cliente")
         try:
             id_Cliente = session['id_Cliente']
         except:
-            mensagem.append = "Algo deu errado com o id do Cliente"
+            mensagem.append("Algo deu errado com o id do Cliente")
 
         tipo_Feijao = request.form.get('tipo_Feijao', '')
         tipo_Arroz = request.form.get('tipo_Arroz', '')
@@ -40,7 +40,7 @@ def pedindo():
         try:
             local_Entrega = request.form.get('local_Entrega', '').strip()
         except:
-            mensagem.append = "Algo deu errado no local de entrega"
+            mensagem.append("Algo deu errado no local de entrega")
         if not local_Entrega:
             local_Entrega = 'Buscará no estabelecimento'
         preco = 12 + 2 * sum(carne in carnes for carne in["Carne", "Frango", "Linguiça"])
@@ -52,14 +52,14 @@ def pedindo():
         try:
             horario_Entrega = request.form.get('horario_Entrega', '').strip()
         except:
-            mensagem.append = 'Algo deu errado no horario de entrega'
+            mensagem.append('Algo deu errado no horario de entrega')
         obs = request.form.get('obs', '')
         pagamento = request.form.get("pagamento", "").strip()
         try:
             pedidosDB.inserir(id_Cliente, nome_Cliente, tipo_Feijao, tipo_Arroz, macarrao, verduras, frango, carne, linguica, obs, preco, horario_Entrega, local_Entrega, pagamento)
             return redirect(url_for("cliente_Perfil", id=session['id_Cliente']))
         except:
-            mensagem.append = "Algo deu errado na hora de enviar o pedido."
+            mensagem.append("Algo deu errado na hora de enviar o pedido.")
             
         
     return render_template("pedindo_Quentinha.html", mensagem=mensagem)
@@ -91,19 +91,22 @@ def login_Funcionario():
         try: 
             nome = request.form.get('email', '').strip()
         except:
-            mensagem.append = "Algo errado com o email"
+            mensagem.append("Algo errado com o email")
         try:
             senha = request.form.get('senha', '').strip()
         except:
-            mensagem.append = "Algo deu errado com a senha"
-        if nome and senha:
-            funcionario = administracaoDB.pegar_Funcionarios(nome, senha)
-            if funcionario:
-                session['funcionario_id'] = funcionario['id_funcionario']
-                session['funcionario_nome'] = funcionario['nome_Funcionario']
-                return redirect(url_for('funcionario'))
-            else: mensagem='Funcionário não existe.' 
-        else: mensagem= 'Escreva algo nos campos'
+            mensagem.append("Algo deu errado com a senha")
+        try:
+            if nome and senha:
+                funcionario = administracaoDB.pegar_Funcionarios(nome, senha)
+                if funcionario:
+                    session['funcionario_id'] = funcionario['id_funcionario']
+                    session['funcionario_nome'] = funcionario['nome_Funcionario']
+                    return redirect(url_for('funcionario'))
+                else: mensagem= 'Funcionário não existe.' 
+            else: mensagem.append('Escreva algo nos campos')
+        except: 
+            mensagem.append('Algo deu errado no login')
     return render_template("login_funcionario.html", mensagem = mensagem)
     
 
@@ -117,20 +120,30 @@ def funcionario():
 
 @app.route("/login_cliente", methods=("POST", "GET"))
 def login_cliente():
-    mensagem = ''
+    mensagem = []
     if request.method == "POST":
-        nome = request.form.get('email', '').strip()
-        senha = request.form.get('senha', '').strip()
-        if nome and senha:
-            
-            cliente = administracaoDB.pegar_Clientes(nome, senha)
-            if cliente:
-                session['nome_Cliente'] = cliente['nome_Cliente']
-                session['numero_Cliente'] = cliente['numero_Cliente']
-                session['id_Cliente'] = cliente['id_Cliente']
-                return redirect(url_for("cliente_Perfil", id=session['id_Cliente']))
-            else: mensagem = 'Cliente não existe'
-        else: mensagem = 'Preencha as informações'
+        try:
+            nome = request.form.get('email', '').strip()
+        except:
+            mensagem.append("Algo deu errado com o nome")
+        try:
+            senha = request.form.get('senha', '').strip()
+        except:
+            mensagem.append("Algo deu errado com a senha")
+        try:
+            if nome and senha:
+                cliente = administracaoDB.pegar_Clientes(nome, senha)
+                try:
+                    session['nome_Cliente'] = cliente['nome_Cliente']
+                    session['numero_Cliente'] = cliente['numero_Cliente']
+                    session['id_Cliente'] = cliente['id_Cliente']
+                    return redirect(url_for("cliente_Perfil", id=session['id_Cliente']))
+                except: 
+                    mensagem.append("Cliente não existe")
+            else: 
+                mensagem.append('Preencha as informações')
+        except:
+            mensagem.append = ("Algo deu errado no login")
     return render_template("login_cliente.html", mensagem=mensagem)
 
 
