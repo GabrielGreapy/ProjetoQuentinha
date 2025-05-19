@@ -7,11 +7,60 @@ body {
     padding: 0%;
     display: flex;
     flex-direction: column;
+    font-family: 'Telex';
+    font-weight: 400;
 }
 
 .page-wrapper {
     flex: 1;
 }
+@import url('https://fonts.googleapis.com/css?family=Poly:700|Telex:400');
+
+button {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 200%;
+  height: 100%;
+  background: linear-gradient(120deg, rgba(255, 255, 255, 0.3), rgba(255,255,255,0));
+  transition: left 0.4s ease;
+  pointer-events: none;
+}
+
+button:hover::before {
+  left: 100%;
+}
+
+button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 12px rgba(229, 255, 0, 0.4), 0 0 24px rgba(251, 255, 0, 0.3);
+}
+
+h1, h2, h3, h4, h5 {
+  font-family: 'Poly';
+  font-weight: 700;
+}
+
+html {font-size: 16px;} /* 16px */
+
+h1 {font-size: 5.652rem; /* 90.4px */}
+
+h2 {font-size: 3.997rem; /* 64px */}
+
+h3 {font-size: 2.827rem; /* 45.28px */}
+
+h4 {font-size: 1.999rem; /* 32px */}
+
+h5 {font-size: 1.414rem; /* 22.56px */}
+
+small {font-size: 0.707rem; /* 11.36px */}
 
 
 
@@ -226,29 +275,35 @@ select{
 
 }
 .contatos {
-    width: 90%;
-    height: 400px;
+    display: flex;
+    flex-flow: column;
+    width: 100%;
     padding: 2rem;
-    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
     font-weight: bold;
     border-radius: 10px;
     text-align: center;
+
 }
 
 .contatos h2 {
+    font-size: 30px;
+    font-weight: bolder;
     margin-bottom: 1rem;
-    color: var(--light);
+    color: var(--dark);
 }
 
 .contatos p {
-    color: var(--light);
+    color: #1f1f1f;
     margin: 0.5rem 0;
     font-size: 1rem;
+    font-weight: lighter;
+    text-align: left;
 }
 
 .contatos a {
-    color: var(--light);
+    color: var(--dark);
     text-decoration: none;
+    text-align: left;
 }
 
 .contatos a:hover {
@@ -265,7 +320,9 @@ select{
     justify-content: center;
     width: 100%;
     margin: 1.6rem 0rem 1.6rem 0rem;
+    
 }
+
 
 .header {
     display: flex;
@@ -349,7 +406,6 @@ select{
     width: 90%;
     margin-top: 12rem;
     padding: 1.6rem;
-    color: var(--light);
     background-color: #90a144;
     box-shadow: 2px 2px 10px rgba(0,0,0,0.1);
     border-radius: 1rem;
@@ -358,8 +414,8 @@ select{
     gap: 1rem;
     font-weight: 11000;
 }
-.violeta{
-    background-color: #69022d;
+.cor-ter{
+    background-color: #61dd72;
 }
 .sobre-projeto h2 {
     font-size: 1.8rem;
@@ -369,7 +425,6 @@ select{
 
 .sobre-projeto p {
     font-size: 1.1rem;
-    color: var(--light);
     text-align: left;
 }
 
@@ -413,13 +468,15 @@ select{
 
 .pedido-detalhes {
     padding: 5px 0 5px;
+    text-align: left;
 }
 
 .pedido-container {
     display: flex;
     width: 90%;
     flex-flow: column;
-    align-items: center;
+    padding-left: 10px;
+    text-align: left;
     box-shadow: 2px 2px 10px var(---rgba);
 }
 
@@ -483,8 +540,7 @@ select{
 }
 
 .login button {
-    background-color: #086209;
-    color: #fff;
+    background-color: #61dd72;
     border-radius: 5%;
     height: 50px;
     font-size: 15px;
@@ -731,11 +787,13 @@ select{
     flex-flow: column;
 
 }
+.cor-sec{
+    background-color: #fe807f;
+}
 .cinza{
     background-color: #f7f7f7;
 }
 .pop-up{
-    display: flex;
     position: absolute;
     background-color: var(--light);
     height: 20vh;
@@ -779,6 +837,11 @@ select{
       opacity: 1;
       transform: translate(-50%, -50%);
     }
+}
+.separador{
+    height: 6px;
+    width: 100vw;
+    border-bottom: 1px dotted #cdcdcf;
 }
 
 /* fonts */

@@ -69,8 +69,7 @@ def pedindo():
 def lista():
     if 'funcionario_nome' in session:
         pedidos= pedidosDB.listar_Pedidos()
-        mensagem="Esta é a lista de pedidos"
-        return render_template("lista_pedidos.html", mensagem=mensagem, pedidos=pedidos)
+        return render_template("lista_pedidos.html", pedidos=pedidos)
 
 
 

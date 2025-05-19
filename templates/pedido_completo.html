@@ -6,8 +6,16 @@
 
 {% block content %}
     <div class="container">
+                    
+        <div class="lista-link">
+            <a href="/lista">
+                <button>Voltar</button>
+            </a>
+        </div>
+    </div>
+    <div class="container">
         <div class="pedido-container">
-            <h3>Detalhes do Pedido #{{ pedido[0] }}</h3>
+            <h5>Detalhes do Pedido #{{ pedido[0] }}</h5>
             <div class="pedido-detalhes"><span class="pedido-detalhes">Id do pedido:</span> {{ pedido[0] }}</div>
             <div class="pedido-detalhes"><span class="pedido-detalhes">Id do cliente:</span> {{ pedido[1] }}</div>
             <div class="pedido-detalhes"><span class="pedido-detalhes">Cliente:</span> {{ pedido[2] }}</div>
