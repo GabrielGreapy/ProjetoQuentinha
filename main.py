@@ -20,59 +20,48 @@ def index():
 
 @app.route("/pedindo", methods=('POST', 'GET'))
 def pedindo():
-    mensagem = 'Pode fazer seu pedido'
-    
+    mensagem = []
     if request.method == 'POST':
-        nome_Cliente = session['nome_Cliente']
-        id_Cliente = session['id_Cliente']
-        if nome_Cliente != '':
-            tipo_Feijao = request.form.get('tipo_Feijao', '')
-            tipo_Arroz = request.form.get('tipo_Arroz', '')
-            
-            
-            opcionais = request.form.getlist('opcionais')  
-            carnes = request.form.getlist('carnes')        
+        try:
+            nome_Cliente = session['nome_Cliente']
+        except:
+            mensagem.append = "Algo deu errado no nome do cliente"
+        try:
+            id_Cliente = session['id_Cliente']
+        except:
+            mensagem.append = "Algo deu errado com o id do Cliente"
 
+        tipo_Feijao = request.form.get('tipo_Feijao', '')
+        tipo_Arroz = request.form.get('tipo_Arroz', '')
+            
+            
+        opcionais = request.form.getlist('opcionais')  
+        carnes = request.form.getlist('carnes')        
+        try:
             local_Entrega = request.form.get('local_Entrega', '').strip()
-            
-            if not local_Entrega:
-                local_Entrega = 'Buscará no estabelecimento'
-            preco = 12
-            if "Macarrão" in opcionais:
-                macarrao = "Sim"
-            else: 
-                macarrao = "Não"
-                
-            if "Verduras" in opcionais:
-                verduras = "Sim"
-            else: 
-                verduras = "Não"
-
-            if "Carne" in carnes:
-                carne = "Sim"
-                preco += 2
-            else: 
-                carne = "Não"
-            if "Frango" in carnes:
-                frango = "Sim"
-                preco += 2
-            else:
-                frango = "Não"
-            if "Linguiça" in carnes:
-                linguica = "Sim"
-                preco += 2
-            else:
-                linguica = "Não"
-
+        except:
+            mensagem.append = "Algo deu errado no local de entrega"
+        if not local_Entrega:
+            local_Entrega = 'Buscará no estabelecimento'
+        preco = 12 + 2 * sum(carne in carnes for carne in["Carne", "Frango", "Linguiça"])
+        macarrao = "Sim" if "Macarrão" in opcionais else "Não"
+        verduras = "Sim" if "Verduras" in opcionais else "Não"
+        carne    = "Sim" if "Carne" in carnes else "Não"
+        frango   = "Sim" if "Frango" in carnes else "Não"
+        linguica = "Sim" if "Linguiça" in carnes else "Não"
+        try:
             horario_Entrega = request.form.get('horario_Entrega', '').strip()
-            obs = request.form.get('obs', '')
-            pagamento = request.form.get("pagamento", "").strip()
+        except:
+            mensagem.append = 'Algo deu errado no horario de entrega'
+        obs = request.form.get('obs', '')
+        pagamento = request.form.get("pagamento", "").strip()
+        try:
             pedidosDB.inserir(id_Cliente, nome_Cliente, tipo_Feijao, tipo_Arroz, macarrao, verduras, frango, carne, linguica, obs, preco, horario_Entrega, local_Entrega, pagamento)
-            mensagem = 'Pedido mandado, muito bem'
             return redirect(url_for("cliente_Perfil", id=session['id_Cliente']))
-        else:
-            mensagem = 'O seu nome está em branco, por favor informe-nos um nome para que possamos distinguir seu pedido'
-
+        except:
+            mensagem.append = "Algo deu errado na hora de enviar o pedido."
+            
+        
     return render_template("pedindo_Quentinha.html", mensagem=mensagem)
 
 
@@ -319,50 +308,37 @@ def cancelarPedido(id, id_pedido):
 @app.route ("/cliente_Perfil/<int:id_cliente>/<int:id_pedido>/editar", methods=("POST", "GET"))
 def editarPedido(id_cliente, id_pedido):
     if 'nome_Cliente' in session:
+        mensagem = []
         if request.method == "POST":
             tipo_Feijao = request.form.get('tipo_Feijao', '')
             tipo_Arroz = request.form.get('tipo_Arroz', '')
             opcionais = request.form.getlist('opcionais')  
             carnes = request.form.getlist('carnes')        
-            local_Entrega = request.form.get('local_Entrega', '').strip()
-            
+
+            try:
+                local_Entrega = request.form.get('local_Entrega', '').strip()
+            except:
+               mensagem.append = "Algo deu errado no local de entrega"
             if not local_Entrega:
                 local_Entrega = 'Buscará no estabelecimento'
             preco = 12
 
-            if "Macarrão" in opcionais:
-                macarrao = "Sim"
-            else: 
-                macarrao = "Não"
-                
-            if "Verduras" in opcionais:
-                verduras = "Sim"
-            else: 
-                verduras = "Não"
-
-            if "Carne" in carnes:
-                carne = "Sim"
-                preco += 2
-            else: 
-                carne = "Não"
-            if "Frango" in carnes:
-                frango = "Sim"
-                preco += 2
-            else:
-                frango = "Não"
-            if "Linguiça" in carnes:
-                linguica = "Sim"
-                preco += 2
-            else:
-                linguica = "Não"
-
+            preco = 12 + 2 * sum(carne in carnes for carne in["Carne", "Frango", "Linguiça"])
+            macarrao = "Sim" if "Macarrão" in opcionais else "Não"
+            verduras = "Sim" if "Verduras" in opcionais else "Não"
+            carne    = "Sim" if "Carne" in carnes else "Não"
+            frango   = "Sim" if "Frango" in carnes else "Não"
+            linguica = "Sim" if "Linguiça" in carnes else "Não"
             horario_Entrega = request.form.get('horario_Entrega', '').strip()
             obs = request.form.get('obs', '')
             pagamento = request.form.get("pagamento", "").strip()
-            pedidosDB.editarPedido(tipo_Feijao, tipo_Arroz, macarrao, verduras, frango, carne, linguica,
-                obs, horario_Entrega, local_Entrega, preco, pagamento, id_pedido)
+            try:
+                pedidosDB.editarPedido(tipo_Feijao, tipo_Arroz, macarrao, verduras, frango, carne, linguica,
+                    obs, horario_Entrega, local_Entrega, preco, pagamento, id_pedido)
+            except:
+                mensagem.append("Algo deu erradoao editar o pedido")
+                return redirect(url_for("cliente_Perfil", id=id))
             id = id_cliente
-            return redirect(url_for("cliente_Perfil", id=id_cliente))
         id_pedido = id_pedido
         pedido = pedidosDB.id_buscar(id_pedido)
         return render_template("editar_pedido.html",  pedido=pedido)

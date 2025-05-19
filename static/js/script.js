@@ -45,3 +45,9 @@ function scrollAteSobre(){
     }
 }
 scrollAteContatos();
+function esconderX() {
+    const popup = document.querySelector(".pop-up");
+    if (popup) {
+      popup.classList.add("esconder");
+    }
+}
