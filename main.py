@@ -86,10 +86,16 @@ def pedido_completo(pedido_id):
 
 @app.route("/login_funcionario", methods=( 'POST', 'GET'))
 def login_Funcionario():
-    mensagem= ''
+    mensagem = []
     if request.method == 'POST':
-        nome = request.form.get('email', '').strip()
-        senha = request.form.get('senha', '').strip()
+        try: 
+            nome = request.form.get('email', '').strip()
+        except:
+            mensagem.append = "Algo errado com o email"
+        try:
+            senha = request.form.get('senha', '').strip()
+        except:
+            mensagem.append = "Algo deu errado com a senha"
         if nome and senha:
             funcionario = administracaoDB.pegar_Funcionarios(nome, senha)
             if funcionario:

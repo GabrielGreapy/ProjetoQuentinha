@@ -8,6 +8,18 @@
     <script src="/static/js/script.js"></script>
 </head>
 <body>
+    {% if mensagem %}
+        <div class="pop-up">
+            <button onclick="esconderX()">X</button>
+            <ul>
+                {% for m in mensagem %}   
+                    <li>
+                        {{ m }}
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+    {% endif%}
     <div class="container">
         <nav>
             <ul>

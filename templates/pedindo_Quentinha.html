@@ -5,18 +5,7 @@
 {% block subtitle %}{% endblock %}
 
 {% block content %}
-    {% if mensagem %}
-        <div class="pop-up">
-            <button onclick="esconderX()">X</button>
-            <ul>
-                {% for m in mensagem %}   
-                    <li>
-                        {{ m }}
-                    </li>
-                {% endfor %}
-            </ul>
-        </div>
-    {% endif%}
+
     <div class="container">
         <div class="quentinha">
             <img src="/static/marmita_vazia.png" alt="quentinha" class="quentinha-vazia">
