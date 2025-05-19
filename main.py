@@ -212,18 +212,25 @@ def criar_Funcionario():
                     mensagem.append("Algo deu errado ao tentar criar um funcionário")
             except:
                 mensagem.append("Algo deu errado ao tentar inserir o funcionário")
-        return render_template("criar_Funcionario.html")
+        return render_template("criar_Funcionario.html", mensagem=mensagem)
     else: return redirect(url_for("login_Funcionario"))
 
 
 @app.route("/inserir_Cardapio", methods=('POST', 'GET'))
 def inserir_Cardapio():
     if 'funcionario_nome' in session:
+        mensagem = []
         if request.method == "POST":
-            cardapio = request.form.get("cardapio", "").strip()
-            if cardapio:
-                cardapioDB.inserir_Cardapio(cardapio)
-                return redirect(url_for("cardapio"))
+            try:
+                cardapio = request.form.get("cardapio", "").strip()
+                try:
+                    cardapioDB.inserir_Cardapio(cardapio)
+                    return redirect(url_for("cardapio"))
+                except:
+                    mensagem.append("Algo deu errado na função de inserir cardápio")
+            except:
+                mensagem.append("Algo deu errado no Cardápio")
+            
         return render_template("inserir_Cardapio.html")
     else: return redirect(url_for("login_Funcionario"))
 
