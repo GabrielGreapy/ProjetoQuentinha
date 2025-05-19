@@ -290,11 +290,18 @@ def historico_Dividas():
 @app.route("/adicionar_devedor", methods=("POST", "GET"))
 def adicionar_devedor():
     if 'funcionario_nome' in session:
+        mensagem = []
         if request.method == "POST":
-            nome = request.form.get("devedor", "").strip()
-            if nome:
-                dividasDB.inserir_Devedor(nome)
-        return render_template("adicionar_devedor.html")
+            try:
+                nome = request.form.get("devedor", "").strip()
+                if nome:
+                    try:
+                        dividasDB.inserir_Devedor(nome)
+                    except:
+                        mensagem.append("Algo deu errado ao tentar inserir o devedor")
+            except:
+                mensagem.append("Algo deu errado no nome")
+        return render_template("adicionar_devedor.html", mensagem=mensagem)
     else: 
         return redirect(url_for("login_Funcionario"))    
 
