@@ -7,7 +7,7 @@ def criando_Tabela():
     cursor.execute('''
                 CREATE TABLE IF NOT EXISTS pedidos (
                      id INTEGER PRIMARY KEY AUTOINCREMENT,
-                     id_Cliente INTEGER NOT NULL,
+                     id_Cliente INTEGER,
                      nome_Cliente TEXT NOT NULL,
                      tipo_Feijao TEXT,
                      tipo_Arroz TEXT,

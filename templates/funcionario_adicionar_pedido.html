@@ -1,0 +1,73 @@
+{% extends "home.html" %}
+
+{% block title %}Adicionando pedido{% endblock %}
+
+{% block subtitle %}{% endblock %}
+
+{% block content %}
+
+    <div class="container">
+        <div class="quentinha">
+            <img src="/static/marmita_vazia.png" alt="quentinha" class="quentinha-vazia">
+        </div>
+    </div>
+    <div class="container">
+        <div class="pedido">
+            <form method="post">
+                <div class="input-pedido"><label for="nomeCliente">Nome do cliente:</label></div>
+                <div class="input-pedido"><input type="text" name="nomeCliente"></input></div>
+                <div class="pedindo-seccao">
+                    <select name="tipo_Feijao" id="">
+                        <option value="Sem Feijão">Sem Feijao</option>
+                        <option value="Feijão Carioca">Feijão Carioca</option>
+                        <option value="Feijão Macassar">Feijão Macassar</option>
+                        <option value="Feijao Preto">Feijão Preto</option>
+                    </select>
+                </div>
+                <div class="pedindo-seccao">
+                    <select name="tipo_Arroz" id="">
+                        <option value="Sem Arroz">Sem arroz</option>
+                        <option value="Arroz Solto">Arroz Refogado(Solto)</option>
+                        <option value="Arroz de Leite">Arroz De Leite(Doce)</option>
+                    </select>
+                </div>
+                <div class="pedindo-seccao">
+                    <h4>Opcionais:</h4>
+                    <div class="input-pedido"><input type="checkbox" name="opcionais" value="Macarrão"> Macarrão</div>
+                    <div class="input-pedido"><input type="checkbox" name="opcionais" value="Verduras"> Verduras
+                </div>
+                <h4>Carnes:</h4>
+                
+                <div class="input-pedido"><input type="checkbox" name="carnes" value="Frango"> Frango</div>
+                <div class="input-pedido"><input type="checkbox" name="carnes" value="Carne"> Carne</div>
+                <div class="input-pedido"><input type="checkbox" name="carnes" value="Linguiça"> Linguiça</div>
+                    
+                <div class="input-pedido"><label for="local_Entrega">Local de entrega: <br> (Não preencha se quiser vir buscar)</label></div>
+                <div class="input-pedido"><input type="text" name="local_Entrega"></input></div>
+                
+                <div class="input-pedido"><label for="horario_Entrega">Horario de entrega</label></div>
+                <div class="input-pedido"><input type="time" name="horario_Entrega"></input></div>
+
+                <div class="pedindo-seccao">
+                    <label for="Observações">Observações</label>
+                    <textarea name="obs" class="input" id="obs"></textarea>
+                </div>
+                <div class="pedindo-seccao">
+                    <label for="pagamento">Forma de pagamento</label>
+                    <select name="pagamento" id="">
+                        <option value="Pessoalmente">Pessoalmente</option>
+                        <option value="Pix">Pix</option>
+                        <option value="Cartão">Cartão</option>
+            
+                    </select>
+                </div>
+                
+                <input type="submit" value="Enviar Pedido" class="botao-solicitar">
+            </form>
+        </div>
+        
+    </div>
+    
+
+    
+{% endblock %}

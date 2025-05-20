@@ -185,7 +185,7 @@ def criar_Cliente():
                 mensagem.append("Alguns dos campos está faltando")
         except:
             mensagem.append("Algo deu errado na criação de cliente.")
-    return render_template("criar_Cliente.html")
+    return render_template("criar_Cliente.html", mensagem=mensagem)
 
 @app.route("/criar_Funcionario", methods=('POST', 'GET'))
 def criar_Funcionario():
@@ -324,8 +324,6 @@ def devedor(id):
                 return render_template("devedor.html", dividas=dividas_Do_Devedor, id=id, devedor=devedor)
             else:
                 return redirect(url_for("adicionar_divida", id=id))
-            return render_template("devedor.html", dividas=dividas_Do_Devedor, id=id)
-            
         else: 
             return redirect(url_for("login_Funcionario"))  
 
@@ -386,7 +384,7 @@ def editarPedido(id_cliente, id_pedido):
             try:
                 local_Entrega = request.form.get('local_Entrega', '').strip()
             except:
-               mensagem.append = "Algo deu errado no local de entrega"
+               mensagem.append("Algo deu errado no local de entrega")
             if not local_Entrega:
                 local_Entrega = 'Buscará no estabelecimento'
             preco = 12
@@ -454,7 +452,7 @@ def adicionar_divida(id):
             except: 
                 mensagem.append("Algo deu errado no valor")
             return redirect(url_for("devedor", id=id))
-        return render_template("adicionar_divida.html")
+        return render_template("adicionar_divida.html", mensagem=mensagem)
     else:
         return redirect(url_for("login_Funcionario"))
 
@@ -470,6 +468,54 @@ def perdoar_divida(id, id_Divida):
         dividasDB.diminuir_divida(id, valor, total)
         dividasDB.excluir_Divida(id_Divida)
         return redirect(url_for("devedor", id=id))
+    else:
+        return redirect(url_for("login_Funcionario"))
+    
+
+@app.route("/funcionario/adicionarPedido", methods=("POST", "GET"))
+def funcionario_adicionar_pedido():
+    if 'funcionario_nome' in session:
+        mensagem = []
+        if request.method == 'POST':
+            try:
+                nome_Cliente = request.form.get("nomeCliente" , "").strip()
+            except:
+                mensagem.append("Algo deu errado no nome do cliente")
+            try:
+                id_Cliente = f'Feito por {session['funcionario_nome']}'
+            except:
+                mensagem.append("Algo deu errado com o id do Cliente")
+
+            tipo_Feijao = request.form.get('tipo_Feijao', '')
+            tipo_Arroz = request.form.get('tipo_Arroz', '')
+                
+                
+            opcionais = request.form.getlist('opcionais')  
+            carnes = request.form.getlist('carnes')        
+            try:
+                local_Entrega = request.form.get('local_Entrega', '').strip()
+            except:
+                mensagem.append("Algo deu errado no local de entrega")
+            if not local_Entrega:
+                local_Entrega = 'Buscará no estabelecimento'
+            preco = 12 + 2 * sum(carne in carnes for carne in["Carne", "Frango", "Linguiça"])
+            macarrao = "Sim" if "Macarrão" in opcionais else "Não"
+            verduras = "Sim" if "Verduras" in opcionais else "Não"
+            carne    = "Sim" if "Carne" in carnes else "Não"
+            frango   = "Sim" if "Frango" in carnes else "Não"
+            linguica = "Sim" if "Linguiça" in carnes else "Não"
+            try:
+                horario_Entrega = request.form.get('horario_Entrega', '').strip()
+            except:
+                mensagem.append('Algo deu errado no horario de entrega')
+            obs = request.form.get('obs', '')
+            pagamento = request.form.get("pagamento", "").strip()
+            try:
+                pedidosDB.inserir(id_Cliente, nome_Cliente, tipo_Feijao, tipo_Arroz, macarrao, verduras, frango, carne, linguica, obs, preco, horario_Entrega, local_Entrega, pagamento)
+                return redirect(url_for("lista"))
+            except:
+                mensagem.append("Algo deu errado na hora de enviar o pedido.")
+        return render_template("funcionario_adicionar_pedido.html")
     else:
         return redirect(url_for("login_Funcionario"))
 if __name__ == "__main__":
