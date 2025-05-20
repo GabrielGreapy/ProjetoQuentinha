@@ -103,9 +103,30 @@ def pegar_Funcionarios(email, senha):
 
 
 
+def inserir_admin_padrao():
+    try:
+        conn = sqlite.connect('administracaoDB.db')  
+        cursor = conn.cursor()
+
+        cursor.execute("SELECT COUNT(*) FROM funcionarios")
+        total = cursor.fetchone()[0]
+
+        if total == 0:
+            cursor.execute("""
+                INSERT INTO funcionarios (nome, email, senha, tipo)
+                VALUES (?, ?, ?, ?)""", ("Admin@Gab.123","Admin",  "senha123"))
+            print("Funcionário admin padrão inserido.")
+        else:
+            print("Funcionário já existente, nenhum admin padrão inserido.")
+
+        conn.commit()
+    except Exception as e:
+        print("Erro ao verificar ou inserir admin padrão:", e)
+    finally:
+        conn.close()
 
 
 criando_Tabela_Administracao()
 criando_Tabela_Clientes()
-
+inserir_admin_padrao()
 
