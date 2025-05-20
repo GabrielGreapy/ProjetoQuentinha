@@ -436,16 +436,23 @@ def clienteHistorico(id):
 def adicionar_divida(id):
     if 'funcionario_nome' in session:
         id = id
+        mensagem = []
         if request.method == "POST":
-            valor = request.form.get("valor", "").strip()
-            if "," in valor:
-                valor_novo = valor.replace( "," , ".")
-                valor = float(valor_novo)
-            else:
-                valor = float(valor)
             devedor = dividasDB.pegar_Devedor(id)
             nome = devedor["nome_Cliente"]
-            dividasDB.inserir_Divida(id, nome, valor)
+            try:
+                valor = request.form.get("valor", "").strip()
+                if "," in valor:
+                    valor_novo = valor.replace( "," , ".")
+                    valor = float(valor_novo)
+                else:
+                    valor = float(valor)
+                try:
+                    dividasDB.inserir_Divida(id, nome, valor)
+                except:
+                    mensagem.append("Algo deu errado ao tentar inserir a divida.")
+            except: 
+                mensagem.append("Algo deu errado no valor")
             return redirect(url_for("devedor", id=id))
         return render_template("adicionar_divida.html")
     else:
