@@ -17,7 +17,7 @@
     <div class="container">
        <div class="form-div">
             <form method="POST">
-
+                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
                 <div class="input-pedido"><label for="cardapio">Cardápio de hoje</label></div>
                 <div class="input-pedido"><textarea name="cardapio" class="obs"></textarea></div>
                 <div class="input-pedido"><input type="submit" value="Enviar Cardápio" class="botao-solicitar"></div>

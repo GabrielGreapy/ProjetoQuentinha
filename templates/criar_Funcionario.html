@@ -16,6 +16,7 @@
     <div class="container">
         <div class="forms-div">
             <form action="" method="POST">
+                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
                 <div class="item-form">
                     <label for="email">Seu E-mail:</label>
                     <input type="email" name="email">

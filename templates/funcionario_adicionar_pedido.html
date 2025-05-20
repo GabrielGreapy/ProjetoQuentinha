@@ -13,7 +13,8 @@
     </div>
     <div class="container">
         <div class="pedido">
-            <form method="post">
+            <form method="POST">
+                {{ csrf_token() }}
                 <div class="input-pedido"><label for="nomeCliente">Nome do cliente:</label></div>
                 <div class="input-pedido"><input type="text" name="nomeCliente"></input></div>
                 <div class="pedindo-seccao">

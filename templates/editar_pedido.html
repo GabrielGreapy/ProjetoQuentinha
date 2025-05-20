@@ -6,10 +6,17 @@
 
 {% block content %}
 
-
+    <div class="container">
+        <div class="item">
+            <a href="/cliente_Perfil/{{ id }}">
+                <button>Voltar</button>
+            </a>
+        </div>
+    </div>
     <div class="container">
         <div class="pedido">
             <form method="POST">
+                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
                 <div class="pedindo-seccao">
                     <select name="tipo_Feijao" id="">
                         <option value="Sem Feijão"{% if pedido[3] ==  "Sem Feijão" %}selected{% endif %}>

@@ -4,13 +4,13 @@ import os
 app = Flask(__name__)
 load_dotenv()
 app.config['SECRET_KEY'] = os.getenv('SECRET_KEY')
-
+from flask_wtf import CSRFProtect
 import pedidosDB
 import administracaoDB
 import cardapioDB
 import carnesDB
 import dividasDB
-
+csrf = CSRFProtect(app)
 
 
 @app.route("/")
@@ -374,6 +374,7 @@ def cancelarPedido(id, id_pedido):
 @app.route ("/cliente_Perfil/<int:id_cliente>/<int:id_pedido>/editar", methods=("POST", "GET"))
 def editarPedido(id_cliente, id_pedido):
     if 'nome_Cliente' in session:
+        id_cliente = id_cliente
         mensagem = []
         if request.method == "POST":
             tipo_Feijao = request.form.get('tipo_Feijao', '')
@@ -407,7 +408,7 @@ def editarPedido(id_cliente, id_pedido):
             id = id_cliente
         id_pedido = id_pedido
         pedido = pedidosDB.id_buscar(id_pedido)
-        return render_template("editar_pedido.html",  pedido=pedido)
+        return render_template("editar_pedido.html",  pedido=pedido, id=id_cliente)
     else:
         return redirect(url_for("login_cliente"))
     

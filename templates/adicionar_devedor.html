@@ -15,6 +15,7 @@
     </div>
     <div class="container">
             <form method="POST">
+                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
                 <div class="item-form">
                     <label for="text">Nome do Devedor</label>
                     <input type="text" name="devedor">

@@ -13,7 +13,8 @@
     </div>
     <div class="container">
         <div class="pedido">
-            <form action="/pedindo" method="post">
+            <form method="POST">
+                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
                 <div class="pedindo-seccao">
                     <select name="tipo_Feijao" id="">
                         <option value="Sem Feijão">Sem Feijao</option>
