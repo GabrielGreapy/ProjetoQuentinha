@@ -154,7 +154,7 @@ def cliente_Perfil(id):
         numero = session['numero_Cliente']
         pedidos = pedidosDB.pedidosDeCliente(id)
         return render_template("cliente_Perfil.html", nome=nome , numero=numero, pedidos=pedidos, id=id)
-    else: return redirect(url_for("/login_cliente"))
+    else: return redirect(url_for("login_cliente"))
 
 
 @app.route("/criar_Cliente", methods=( "POST", "GET"))
@@ -448,11 +448,12 @@ def adicionar_divida(id):
                     valor = float(valor)
                 try:
                     dividasDB.inserir_Divida(id, nome, valor)
+                    return redirect(url_for("devedor", id=id))
                 except:
                     mensagem.append("Algo deu errado ao tentar inserir a divida.")
             except: 
                 mensagem.append("Algo deu errado no valor")
-            return redirect(url_for("devedor", id=id))
+            
         return render_template("adicionar_divida.html", mensagem=mensagem)
     else:
         return redirect(url_for("login_Funcionario"))
@@ -520,4 +521,4 @@ def funcionario_adicionar_pedido():
     else:
         return redirect(url_for("login_Funcionario"))
 if __name__ == "__main__":
-    app.run(host='0.0.0.0', port=80)
+    app.run(host='0.0.0.0', port=80, debug=True)
