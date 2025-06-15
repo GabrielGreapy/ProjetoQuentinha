@@ -20,6 +20,7 @@ button {
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   position: relative;
   overflow: hidden;
+  
 }
 
 button::before {
@@ -366,7 +367,7 @@ select{
  
     height: 50px;
     font-size: 15px;
-    width: 85vw;
+    width: clamp(250px , 70vw, 600px);
     border: none;
 
 
@@ -548,7 +549,8 @@ select{
     border-radius: 5%;
     height: 50px;
     font-size: 15px;
-    width: 85vw;
+    outline: none;
+    width: clamp(250px , 70vw, 600px);
 }
 
 .loginform {
@@ -606,7 +608,7 @@ select{
     gap: 30px;
 }
 .lista-link button{
-    width: 85vw;
+    width: clamp(250px , 70vw, 600px);
     height: 50px;
 }
 
@@ -690,6 +692,7 @@ select{
 .funcoes {
     display: flex;
     flex-flow: column;
+    align-items: center;
     width: 90%;
 }
 
@@ -701,7 +704,7 @@ select{
 }
 
 .b100 {
-    width: 100%;
+    width: clamp(250px , 70vw, 600px);
 }
 
 .pedido-infoEntrega {

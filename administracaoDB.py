@@ -111,7 +111,7 @@ def inserir_admin_padrao():
         total = cursor.fetchone()[0]
 
         if total == 0:
-            inserir_Funcionario( "admin@silvania.com", "Admin", "silvaniaDelicias167" )
+            inserir_Funcionario( "Admin", "admin@silvania.com", "silvaniaDelicias167" )
                 
             print("Funcionário admin padrão inserido.")
         else:
